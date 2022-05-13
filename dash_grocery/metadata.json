@@ -1,0 +1,606 @@
+{
+  "src/lib/components/barcode/Barcode.react.js": {
+    "description": "Wrapped from [react-barcode](https://github.com/kciter/react-barcode).",
+    "displayName": "DashBarcode",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "value": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      },
+      "width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The width option is the width of a single bar.",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
+      },
+      "height": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The height of the barcode.",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "format": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Select which barcode type to use. \nPlease check the wikipage of the different barcode types for more information.",
+        "defaultValue": {
+          "value": "\"CODE128\"",
+          "computed": false
+        }
+      },
+      "displayValue": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "text": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Overide the text that is diplayed"
+      },
+      "fontOptions": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "With fontOptions you can add bold or italic text to the barcode.",
+        "defaultValue": {
+          "value": "\"\"",
+          "computed": false
+        }
+      },
+      "font": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Define the font used for the text in the generated barcode.\nThis can be any default font or a font defined by a @font-face rule.",
+        "defaultValue": {
+          "value": "\"monospace\"",
+          "computed": false
+        }
+      },
+      "textAlign": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Set the horizontal alignment of the text. Can be left / center / right.",
+        "defaultValue": {
+          "value": "\"center\"",
+          "computed": false
+        }
+      },
+      "textPosition": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Set the vertical position of the text. Can be bottom / top.",
+        "defaultValue": {
+          "value": "\"bottom\"",
+          "computed": false
+        }
+      },
+      "textMargin": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Set the space between the barcode and the text.",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
+      },
+      "fontSize": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Set the size of the text.",
+        "defaultValue": {
+          "value": "20",
+          "computed": false
+        }
+      },
+      "background": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Set the background of the barcode.",
+        "defaultValue": {
+          "value": "\"#ffffff\"",
+          "computed": false
+        }
+      },
+      "lineColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Set the color of the bars and the text.",
+        "defaultValue": {
+          "value": "\"#000000\"",
+          "computed": false
+        }
+      },
+      "margin": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Set the space margin around the barcode. \nIf nothing else is set, all side will inherit the margins property but can be replaced if you want to set them separably.",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "marginTop": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "marginBottom": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "marginLeft": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "marginRight": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "flat": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Only for EAN8/EAN13"
+      }
+    }
+  },
+  "src/lib/components/lazyload/LazyLoad.react.js": {
+    "description": "Wrapped from [react-lazyload](https://github.com/twobin/react-lazyload).\nLazyload your Components, Images or anything matters the performance.",
+    "displayName": "DashLazyLoad",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Type: Node Default: undefined\n**NOTICE**\nOnly one child is allowed to be passed."
+      },
+      "scrollContainer": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "node"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Type: String/DOM node Default: undefined\nPass a query selector string or DOM node. LazyLoad will attach to the window object's scroll  events *if no container is passed."
+      },
+      "height": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Type: Number/String Default: undefined\nIn the first round of render, LazyLoad will render a placeholder for your component if no  *placeholder is provided and measure if this component is visible. Set `height` properly will make  *LazyLoad calculate more precisely. The value can be number or string like `'100%'`. You can also  *use css to set the height of the placeholder instead of using `height`."
+      },
+      "once": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Type: Bool Default: false\nOnce the lazy loaded component is loaded, do not detect scroll/resize event anymore. Useful for  *images or simple components.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "offset": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "array"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Type: Number/Array(Number) Default: 0\nSay if you want to preload a component even if it's 100px below the viewport (user have to scroll  *100px more to see this component), you can set `offset` props to `100`. On the other hand, if you  *want to delay loading a component even if it's top edge has already appeared at viewport, set  *`offset` to negative number.\nLibrary supports horizontal lazy load out of the box. So when you provide this prop with number  *like `100` it will automatically set left edge offset to `100` and top edge to `100`;\nIf you provide this prop with array like `[100, 200]`, it will set left edge offset to `100` and  *top offset to `200`.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "scroll": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Type: Bool Default: true\nListen and react to scroll event.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "resize": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Type: Bool Default: false\nRespond to `resize` event, set it to `true` if you do need LazyLoad listen resize event.\n**NOTICE** If you tend to support legacy IE, set this props carefully, refer to [this question]* (http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer) for  *further reading.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "overflow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Type: Bool Default: false\nIf lazy loading components inside a overflow container, set this to `true`. Also make sure a  *`position` property other than `static` has been set to your overflow container.\n[demo](https://twobin.github.io/react-lazyload/examples/#/overflow)",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "Type: Any Default: undefined\nSpecify a placeholder for your lazy loaded component.\n[demo](https://twobin.github.io/react-lazyload/examples/#/placeholder)\n**If you provide your own placeholder, do remember add appropriate `height` or `minHeight` to your  *placeholder element for better lazyload performance.**"
+      },
+      "unmountIfInvisible": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Type: Bool Default: false\nThe lazy loaded component is unmounted and replaced by the placeholder when it is no longer  visible *in the viewport.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "debounce": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "bool"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Type: Bool / Number Default: undefined\nLazyload will try to use [passive event](https://github.com/WICG/EventListenerOptions/blob/ gh-pages/*explainer.md) by default to improve scroll/resize event handler's performance. If you  prefer *control this behaviour by yourself, you can set `debounce` or `throttle` to enable built in  delay *feature.\nIf you provide a number, that will be how many `ms` to wait; if you provide `true`, the wait time  *defaults to `300ms`.\n**NOTICE** Set `debounce` / `throttle` to all lazy loaded components unanimously, if you don't,  the *first occurrence is respected.\n[demo](https://twobin.github.io/react-lazyload/examples/#/debounce)"
+      },
+      "throttle": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "bool"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Type: Bool / Number Default: undefined\nLazyload will try to use [passive event](https://github.com/WICG/EventListenerOptions/blob/ gh-pages/*explainer.md) by default to improve scroll/resize event handler's performance. If you  prefer *control this behaviour by yourself, you can set `debounce` or `throttle` to enable built in  delay *feature.\nIf you provide a number, that will be how many `ms` to wait; if you provide `true`, the wait time  *defaults to `300ms`.\n**NOTICE** Set `debounce` / `throttle` to all lazy loaded components unanimously, if you don't,  the *first occurrence is respected.\n[demo](https://twobin.github.io/react-lazyload/examples/#/debounce)"
+      },
+      "classNamePrefix": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Type: String Default: `lazyload`\nWhile rendering, Lazyload will add some elements to the component tree in addition to the wrapped  *component children.\nThe `classNamePrefix` prop allows the user to supply their own custom class prefix to help:\n \u00a0 # Avoid class conflicts on an implementing app\n \u00a0 # Allow easier custom styling\nThese being:\n \u00a0 # A wrapper div, which is present at all times (default )",
+        "defaultValue": {
+          "value": "'lazyload'",
+          "computed": false
+        }
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Type: Object Default: undefined\nSimilar to [classNamePrefix](#classNamePrefix), the `style` prop allows users to pass custom CSS  *styles to wrapper div."
+      }
+    }
+  },
+  "src/lib/components/qrcode/QRCodeCanvas.react.js": {
+    "description": "Wrapped from [qrcode.react](https://github.com/zpao/qrcode.react).",
+    "displayName": "DashQRCodeCanvas",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "bgColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "\"#FFFFFF\""
+      },
+      "fgColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "\"#000000\""
+      },
+      "level": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "('L' 'M' 'Q' 'H')"
+      },
+      "includeMargin": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "imageSettings": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "src": {
+              "name": "string",
+              "required": false
+            },
+            "x": {
+              "name": "number",
+              "description": "none, will center",
+              "required": false
+            },
+            "y": {
+              "name": "number",
+              "description": "none, will center",
+              "required": false
+            },
+            "height": {
+              "name": "number",
+              "required": false
+            },
+            "width": {
+              "name": "number",
+              "required": false
+            },
+            "excavate": {
+              "name": "bool",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/lib/components/qrcode/QRCodeSVG.react.js": {
+    "description": "Wrapped from [qrcode.react](https://github.com/zpao/qrcode.react).",
+    "displayName": "DashQRCodeSVG",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "size": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "bgColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "\"#FFFFFF\""
+      },
+      "fgColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "\"#000000\""
+      },
+      "level": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "('L' 'M' 'Q' 'H')"
+      },
+      "includeMargin": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "imageSettings": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "src": {
+              "name": "string",
+              "required": false
+            },
+            "x": {
+              "name": "number",
+              "description": "none, will center",
+              "required": false
+            },
+            "y": {
+              "name": "number",
+              "description": "none, will center",
+              "required": false
+            },
+            "height": {
+              "name": "number",
+              "required": false
+            },
+            "width": {
+              "name": "number",
+              "required": false
+            },
+            "excavate": {
+              "name": "bool",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  }
+}

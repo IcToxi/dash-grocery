@@ -7,8 +7,12 @@ const version = "0.0.1"
 
 include("jl/barcode.jl")
 include("jl/lazyload.jl")
+include("jl/mouseparticles.jl")
+include("jl/particlesbg.jl")
+include("jl/powermodeinput.jl")
 include("jl/qrcodecanvas.jl")
 include("jl/qrcodesvg.jl")
+include("jl/weather.jl")
 
 function __init__()
     DashBase.register_package(

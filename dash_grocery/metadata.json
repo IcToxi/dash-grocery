@@ -407,6 +407,561 @@
       }
     }
   },
+  "src/lib/components/particles/MouseParticles.react.js": {
+    "description": "Wrapped from [react-mouse-particles](https://github.com/lindelof/react-mouse-particles).",
+    "displayName": "DashMouseParticles",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "g": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Whether to add gravity",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "num": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The number of particles emitted each time",
+        "defaultValue": {
+          "value": "3",
+          "computed": false
+        }
+      },
+      "radius": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The radius of every particle",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "alpha": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The alpha of every particle",
+        "defaultValue": {
+          "value": ".1",
+          "computed": false
+        }
+      },
+      "tha": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The Particle emitter angle",
+        "defaultValue": {
+          "value": "20",
+          "computed": false
+        }
+      },
+      "v": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The Particle emitter Particle velocity",
+        "defaultValue": {
+          "value": ".5",
+          "computed": false
+        }
+      },
+      "life": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The life of every particle",
+        "defaultValue": {
+          "value": "1.2",
+          "computed": false
+        }
+      },
+      "color": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": "Particle color",
+        "defaultValue": {
+          "value": "'random'",
+          "computed": false
+        }
+      },
+      "cull": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Eliminate dom's className without triggering animation"
+      },
+      "level": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Detect levels of culling animation",
+        "defaultValue": {
+          "value": "6",
+          "computed": false
+        }
+      }
+    }
+  },
+  "src/lib/components/particles/ParticlesBg.react.js": {
+    "description": "Wrapped from [particles-bg](https://github.com/lindelof/particles-bg).",
+    "displayName": "DashParticlesBg",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "type": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The type of particle animation.\n\"color\", \"ball\", \"lines\", \"thick\", \"circle\", \"cobweb\" ,\"polygon\", \"square\", \"tadpole\", \"fountain\", \"random\", \"custom\"",
+        "defaultValue": {
+          "value": "'random'",
+          "computed": false
+        }
+      },
+      "num": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The number of particles emitted each time, generally not set"
+      },
+      "color": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": "The background color or particle color of the particle scene",
+        "defaultValue": {
+          "value": "'random'",
+          "computed": false
+        }
+      },
+      "bg": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "object"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Eliminate dom's className without triggering animation",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "config": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "num": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "rps": {
+              "name": "number",
+              "required": false
+            },
+            "radius": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "life": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "v": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "tha": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "body": {
+              "name": "string",
+              "required": false
+            },
+            "rotate": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "alpha": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "scale": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "position": {
+              "name": "string",
+              "required": false
+            },
+            "color": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "string"
+                  }
+                }
+              ],
+              "required": false
+            },
+            "cross": {
+              "name": "string",
+              "required": false
+            },
+            "random": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "bool"
+                }
+              ],
+              "required": false
+            },
+            "g": {
+              "name": "number",
+              "required": false
+            },
+            "f": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "func": {
+              "name": "func",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "You can use type=\"custom\" to achieve a higher degree of freedom for the particle background."
+      }
+    }
+  },
+  "src/lib/components/particles/PowerModeInput.react.js": {
+    "description": "Wrapped from [particles-bg](https://github.com/lindelof/particles-bg).",
+    "displayName": "DashPowerModeInput",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "type": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'text'",
+          "computed": false
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "value": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": ""
+      },
+      "defaultValue": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": ""
+      },
+      "maxLength": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "128",
+          "computed": false
+        }
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "config": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "height": {
+              "name": "number",
+              "required": false
+            },
+            "num": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "radius": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "tha": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "alpha": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "number"
+                },
+                {
+                  "name": "array"
+                }
+              ],
+              "required": false
+            },
+            "color": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "string"
+                  }
+                }
+              ],
+              "required": false
+            },
+            "g": {
+              "name": "number",
+              "required": false
+            },
+            "circle": {
+              "name": "bool",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "You can use type=\"custom\" to achieve a higher degree of freedom for the particle background.",
+        "defaultValue": {
+          "value": "{\n    height: 5,\n    tha: [0, 360],\n    g: 0.5,\n    num: 5,\n    radius: 6,\n    circle: true,\n    alpha: [0.75, 0.1],\n    color: \"random\"\n}",
+          "computed": false
+        }
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
   "src/lib/components/qrcode/QRCodeCanvas.react.js": {
     "description": "Wrapped from [qrcode.react](https://github.com/zpao/qrcode.react).",
     "displayName": "DashQRCodeCanvas",
@@ -597,6 +1152,243 @@
               "required": false
             }
           }
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/lib/components/weather/Weather.react.js": {
+    "description": "",
+    "displayName": "DashWeather",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "api_key": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "your api key from the openweather, weatherbit or visual crossing websites"
+      },
+      "lat": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "latitude of the location",
+        "defaultValue": {
+          "value": "'48.137154'",
+          "computed": false
+        }
+      },
+      "lon": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "longitude of the location",
+        "defaultValue": {
+          "value": "'11.576124'",
+          "computed": false
+        }
+      },
+      "lang": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "the language to show \"humidity\" and \"wind speed\", feel free to open a PR to lang.js to add more languages\n\"en\", \"de\", \"es\"",
+        "defaultValue": {
+          "value": "'en'",
+          "computed": false
+        }
+      },
+      "unit": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "the unit will be passed to the openweather, weatherbit or visualcrossing \"units\" property, please check their documentation for more info",
+        "defaultValue": {
+          "value": "'metric'",
+          "computed": false
+        }
+      },
+      "locationLabel": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The name of the location or city to show in the component",
+        "defaultValue": {
+          "value": "'Munich'",
+          "computed": false
+        }
+      },
+      "unitsLabels": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "temperature": {
+              "name": "string",
+              "required": false
+            },
+            "windSpeed": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "the labels to be used for temprature and windspeed",
+        "defaultValue": {
+          "value": "{ temperature: 'C', windSpeed: 'Km/h' }",
+          "computed": false
+        }
+      },
+      "showForecast": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "whether or not to show the forecast bottom part of the component",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "option": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "useOpenWeather, useWeatherBit and useVisualCrossing options",
+        "defaultValue": {
+          "value": "'OpenWeather'",
+          "computed": false
+        }
+      },
+      "theme": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "fontFamily": {
+              "name": "string",
+              "required": false
+            },
+            "gradientStart": {
+              "name": "string",
+              "required": false
+            },
+            "gradientMid": {
+              "name": "string",
+              "required": false
+            },
+            "gradientEnd": {
+              "name": "string",
+              "required": false
+            },
+            "locationFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayTempFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayDateFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayRangeFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayDescFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayInfoFontColor": {
+              "name": "string",
+              "required": false
+            },
+            "todayIconColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastBackgroundColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastSeparatorColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastDateColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastDescColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastRangeColor": {
+              "name": "string",
+              "required": false
+            },
+            "forecastIconColor": {
+              "name": "string",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Custom styling",
+        "defaultValue": {
+          "value": "{\n    fontFamily: 'Helvetica, sans-serif',\n    gradientStart: '#0181C2',\n    gradientMid: '#04A7F9',\n    gradientEnd: '#4BC4F7',\n    locationFontColor: '#FFF',\n    todayTempFontColor: '#FFF',\n    todayDateFontColor: '#B5DEF4',\n    todayRangeFontColor: '#B5DEF4',\n    todayDescFontColor: '#B5DEF4',\n    todayInfoFontColor: '#B5DEF4',\n    todayIconColor: '#FFF',\n    forecastBackgroundColor: '#FFF',\n    forecastSeparatorColor: '#DDD',\n    forecastDateColor: '#777',\n    forecastDescColor: '#777',\n    forecastRangeColor: '#777',\n    forecastIconColor: '#4BC4F7',\n}",
+          "computed": false
+        }
+      },
+      "customData": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "func": {
+        "type": {
+          "name": "func"
         },
         "required": false,
         "description": ""

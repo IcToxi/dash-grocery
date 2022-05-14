@@ -16,11 +16,15 @@
   "author": "IcToxi <example@email.com>",
   "license": "MIT",
   "dependencies": {
+    "particles-bg": "^2.5.5",
+    "power-mode-input": "^1.0.3",
     "qrcode.react": "^3.0.1",
     "ramda": "^0.26.1",
     "react-barcode": "^1.4.1",
     "react-chessground": "^1.5.0",
-    "react-lazyload": "^3.2.0"
+    "react-lazyload": "^3.2.0",
+    "react-mouse-particles": "^1.1.5",
+    "react-open-weather": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

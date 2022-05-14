@@ -12,7 +12,7 @@ app.layout = html.Div(
         html.Br(),
         html.Br(),
         html.Br(),
-        dash_grocery.QRCodeSVG(value="https://rarbgtor.org/"),
+        dash_grocery.QRCodeSVG(value="https://github.com/"),
     ]
 )
 

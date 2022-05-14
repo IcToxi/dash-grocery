@@ -6,7 +6,7 @@
 \title{Weather component}
 
 \description{
-
+Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
 }
 
 \usage{

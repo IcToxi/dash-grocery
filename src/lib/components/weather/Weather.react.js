@@ -2,6 +2,10 @@ import ReactWeather, { useOpenWeather, useWeatherBit, useVisualCrossing } from '
 import PropTypes from 'prop-types';
 import { omit, pick } from "ramda";
 
+/**
+ * Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
+ *
+ */
 const DashWeather = (props) => {
     const services = {
         'OpenWeather': useOpenWeather,
@@ -59,7 +63,12 @@ DashWeather.defaultProps = {
         forecastDescColor: '#777',
         forecastRangeColor: '#777',
         forecastIconColor: '#4BC4F7',
-    }
+    },
+    func: ((...props) => ({
+        data: props.customData,
+        isLoading: undefined,
+        errorMessage: undefined
+    }))
 };
 
 

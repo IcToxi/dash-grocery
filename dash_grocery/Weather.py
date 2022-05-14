@@ -5,7 +5,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 class Weather(Component):
     """A Weather component.
-
+Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
 
 Keyword arguments:
 

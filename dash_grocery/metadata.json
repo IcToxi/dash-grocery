@@ -1159,7 +1159,7 @@
     }
   },
   "src/lib/components/weather/Weather.react.js": {
-    "description": "",
+    "description": "Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).",
     "displayName": "DashWeather",
     "methods": [],
     "props": {
@@ -1391,7 +1391,11 @@
           "name": "func"
         },
         "required": false,
-        "description": ""
+        "description": "",
+        "defaultValue": {
+          "value": "(...props) => ({\n    data: props.customData,\n    isLoading: undefined,\n    errorMessage: undefined\n})",
+          "computed": false
+        }
       }
     }
   }

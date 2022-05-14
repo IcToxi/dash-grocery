@@ -6,7 +6,7 @@ export weather
     weather(;kwargs...)
 
 A Weather component.
-
+Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
 Keyword arguments:
 - `id` (String; optional): The ID used to identify this component in Dash callbacks.
 - `api_key` (String; required): your api key from the openweather, weatherbit or visual crossing websites

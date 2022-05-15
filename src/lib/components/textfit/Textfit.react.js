@@ -23,6 +23,11 @@ export default class DashTextfit extends Component {
         class_name: PropTypes.string,
 
         /**
+         * 
+         */
+        children: PropTypes.node,
+
+        /**
          * (single|multi) Algorithm to fit the text. Use single for headlines and multi for paragraphs.
          * Default is multi.
          */

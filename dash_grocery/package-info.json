@@ -23,8 +23,10 @@
     "react-barcode": "^1.4.1",
     "react-chessground": "^1.5.0",
     "react-lazyload": "^3.2.0",
+    "react-live-clock": "^5.9.1",
     "react-mouse-particles": "^1.1.5",
-    "react-open-weather": "^1.2.0"
+    "react-open-weather": "^1.2.0",
+    "react-textfit": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -43,7 +45,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
+    "react": "^16.14.0",
     "react-docgen": "^4.1.1",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",

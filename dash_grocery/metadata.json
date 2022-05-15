@@ -220,6 +220,99 @@
       }
     }
   },
+  "src/lib/components/clock/Clock.react.js": {
+    "description": "Wrapped from [react-live-clock](https://github.com/pvoznyuk/react-live-clock).",
+    "displayName": "DashClock",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "date can be set as a children prop."
+      },
+      "date": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "custom",
+              "raw": "PropTypes.date"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Date to output, If nothing is set then it take current date."
+      },
+      "format": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Formatting from moment.js library."
+      },
+      "locale": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Changes the language of the component via prop"
+      },
+      "filter": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Filtering the value before the output ."
+      },
+      "timezone": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "If timezone is set, the date is show in this timezone. \nYou can find the list. here, the TZ column."
+      },
+      "ticking": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If you want the clock to be auto-updated every interval seconds."
+      },
+      "interval": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Auto-updating period for the clock. 1 second is a default value."
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "callback function on each output update"
+      }
+    }
+  },
   "src/lib/components/lazyload/LazyLoad.react.js": {
     "description": "Wrapped from [react-lazyload](https://github.com/twobin/react-lazyload).\nLazyload your Components, Images or anything matters the performance.",
     "displayName": "DashLazyLoad",
@@ -1155,6 +1248,76 @@
         },
         "required": false,
         "description": ""
+      }
+    }
+  },
+  "src/lib/components/textfit/Textfit.react.js": {
+    "description": "Wrapped from [react-textfit](https://github.com/malte-wessel/react-textfit).",
+    "displayName": "DashTextfit",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "class_name": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties"
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": ""
+      },
+      "mode": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "(single|multi) Algorithm to fit the text. Use single for headlines and multi for paragraphs.\nDefault is multi."
+      },
+      "forceSingleModeWidth": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "(Boolean) When mode is single and forceSingleModeWidth is true, the element's height will be ignored. \nDefault is true."
+      },
+      "min": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "(Number) Minimum font size in pixel. Default is 1."
+      },
+      "max": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "(Number) Maximum font size in pixel. Default is 100."
+      },
+      "throttle": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "(Number) Window resize throttle in milliseconds. Default is 50."
+      },
+      "onReady": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "(Function) Will be called when text is fitted."
       }
     }
   },

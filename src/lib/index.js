@@ -8,6 +8,7 @@ import ParticlesBg from './components/particles/ParticlesBg.react';
 import PowerModeInput from './components/particles/PowerModeInput.react';
 import Weather from './components/weather/Weather.react';
 import Textfit from './components/textfit/Textfit.react';
+import Clock from './components/clock/Clock.react';
 
 export {
     LazyLoad,
@@ -18,5 +19,6 @@ export {
     ParticlesBg,
     PowerModeInput,
     Weather,
-    Textfit
+    Textfit,
+    Clock
 };

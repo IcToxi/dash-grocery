@@ -2,6 +2,14 @@
   "name": "dash_grocery",
   "version": "0.0.2",
   "description": "Project Description",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IcToxi/dash-grocery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IcToxi/dash-grocery/issues"
+  },
+  "homepage": "https://github.com/IcToxi/dash-grocery",
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve --config ./webpack.serve.config.js --open",
@@ -21,7 +29,6 @@
     "qrcode.react": "^3.0.1",
     "ramda": "^0.26.1",
     "react-barcode": "^1.4.1",
-    "react-chessground": "^1.5.0",
     "react-lazyload": "^3.2.0",
     "react-live-clock": "^5.9.1",
     "react-mouse-particles": "^1.1.5",

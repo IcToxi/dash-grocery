@@ -47,7 +47,7 @@
     "babel-loader": "^8.0.6",
     "copyfiles": "^2.1.1",
     "css-loader": "^3.6.0",
-    "eslint": "^6.0.1",
+    "eslint": "^8.15.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",

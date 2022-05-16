@@ -6,7 +6,7 @@ import { createRef } from 'react/cjs/react.production.min';
 
 
 /**
- * Wrapped from [particles-bg](https://github.com/lindelof/particles-bg).
+ * Wrapped from [power-mode-input](https://github.com/lindelof/power-mode-input).
  * 
  */
 export default class DashPowerModeInput extends Component {

@@ -1,8 +1,8 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
-const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
@@ -82,19 +82,8 @@ module.exports = (env, argv) => {
             ],
         },
         optimization: {
-            minimizer: [
-                new TerserPlugin({
-                    sourceMap: true,
-                    parallel: true,
-                    cache: './.build_cache/terser',
-                    terserOptions: {
-                        warnings: false,
-                        ie8: false
-                    }
-                })
-            ],
             splitChunks: {
-                name: false,
+                name: '[name].js',
                 cacheGroups: {
                     async: {
                         chunks: 'async',
@@ -103,12 +92,12 @@ module.exports = (env, argv) => {
                             return `${cacheGroupKey}-${chunks[0].name}`;
                         }
                     },
-                    shared: {
-                        chunks: 'all',
-                        minSize: 0,
-                        minChunks: 2,
-                        name: 'dash_grocery-shared'
-                    }
+                    // shared: {
+                    //     chunks: 'all',
+                    //     minSize: 0,
+                    //     minChunks: 2,
+                    //     name: ''
+                    // }
                 }
             }
         },
@@ -117,7 +106,8 @@ module.exports = (env, argv) => {
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
                 exclude: ['async-plotlyjs']
-            })
+            }),
+            new NodePolyfillPlugin()
         ]
     };
 };

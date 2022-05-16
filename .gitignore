@@ -105,6 +105,12 @@ build/Release
 
 # Dependency directories
 node_modules/
+/.pnp
+.pnp.js
+.pnp.cjs
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
 jspm_packages/
 
 # TypeScript v1 declaration files

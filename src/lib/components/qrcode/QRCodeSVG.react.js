@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import QRCodeSVG from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import { omit } from "ramda";
 
 /**

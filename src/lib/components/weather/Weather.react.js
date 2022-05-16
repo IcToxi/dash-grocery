@@ -66,8 +66,8 @@ DashWeather.defaultProps = {
     },
     func: ((...props) => ({
         data: props.customData,
-        isLoading: undefined,
-        errorMessage: undefined
+        isLoading: null,
+        errorMessage: null
     }))
 };
 

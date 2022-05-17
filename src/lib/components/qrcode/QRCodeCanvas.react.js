@@ -22,19 +22,23 @@ export default class DashQRCodeCanvas extends Component {
         */
         class_name: PropTypes.string,
 
-        /** */
+        /**
+         * The value of the QR code.
+         */
         value: PropTypes.string,
 
-        /** */
+        /**
+         * size
+         */
         size: PropTypes.number,
 
         /**
-        * "#FFFFFF" 
+        * Background color. "#FFFFFF" 
         */
         bgColor: PropTypes.string,
 
         /**
-        * "#000000" 
+        * Foreground color. "#000000" 
         */
         fgColor: PropTypes.string,
 
@@ -43,12 +47,18 @@ export default class DashQRCodeCanvas extends Component {
          */
         level: PropTypes.string,
 
-        /** */
+        /**
+         * Whether to include margins.
+         */
         includeMargin: PropTypes.bool,
 
-        /** */
+        /**
+         * Settings for pictures inserted in the QR code.
+         */
         imageSettings: PropTypes.shape({
-            /** */
+            /**
+             * The src of the image tag.
+             */
             src: PropTypes.string,
 
             /**
@@ -61,13 +71,19 @@ export default class DashQRCodeCanvas extends Component {
              */
             y: PropTypes.number,
 
-            /** */
+            /**
+             * height of the img
+             */
             height: PropTypes.number,
 
-            /** */
+            /**
+             * width of the img
+             */
             width: PropTypes.number,
 
-            /** */
+            /**
+             * excavate
+             */
             excavate: PropTypes.bool
         })
 

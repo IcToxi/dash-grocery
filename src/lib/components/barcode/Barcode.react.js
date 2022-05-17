@@ -37,7 +37,7 @@ export default class DashBarcode extends Component {
         class_name: PropTypes.string,
 
         /**
-         * 
+         * The value of the barcode.
          */
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -57,7 +57,9 @@ export default class DashBarcode extends Component {
          */
         format: PropTypes.string,
 
-        /** */
+        /**
+         * Whether to display the barcode value.
+         */
         displayValue: PropTypes.bool,
 
         /**
@@ -112,16 +114,24 @@ export default class DashBarcode extends Component {
          */
         margin: PropTypes.number,
 
-        /** */
+        /**
+         * margins
+         */
         marginTop: PropTypes.number,
 
-        /** */
+        /**
+         * margins
+         */
         marginBottom: PropTypes.number,
 
-        /** */
+        /**
+         * margins
+         */
         marginLeft: PropTypes.number,
 
-        /** */
+        /**
+         * margins
+         */
         marginRight: PropTypes.number,
 
         /**

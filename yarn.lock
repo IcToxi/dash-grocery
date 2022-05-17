@@ -3221,6 +3221,7 @@ __metadata:
     react-mouse-particles: ^1.1.5
     react-open-weather: ^1.2.0
     react-textfit: ^1.1.1
+    snake-game-react: ^1.0.6
     style-loader: ^3.3.1
     styled-jsx: ^5.0.2
     svg-loader: ^0.0.2
@@ -7481,6 +7482,17 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
+  languageName: node
+  linkType: hard
+
+"snake-game-react@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "snake-game-react@npm:1.0.6"
+  peerDependencies:
+    prop-types: ^15.6.0
+    react: ^17.0.0
+    react-dom: ^17.0.0
+  checksum: a126ca019a1bafbe9592c15a6b7202ad2d0839b915a3b4cc932b50c5debfc65f82bddcb0e6cf9ba1aa07ac8827ed379b2b6cd02e296e9e14ac9a8f2ea58bda87
   languageName: node
   linkType: hard
 

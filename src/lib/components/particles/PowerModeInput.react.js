@@ -38,32 +38,32 @@ export default class DashPowerModeInput extends Component {
         class_name: PropTypes.string,
 
         /**
-         * 
+         * Type of the input tag.
          */
         type: PropTypes.string,
 
         /**
-         * 
+         * Placeholder of the input tag.
          */
         placeholder: PropTypes.string,
 
         /**
-         * 
+         * Value of the input tag.
          */
         value: PropTypes.any,
 
         /**
-         * 
+         * Default value of the input tag.
          */
         defaultValue: PropTypes.any,
 
         /**
-         * 
+         * The length limit of the input.
          */
         maxLength: PropTypes.number,
 
         /**
-         * 
+         * Style of the input tag.
          */
         style: PropTypes.object,
 
@@ -82,7 +82,8 @@ export default class DashPowerModeInput extends Component {
         }),
 
         /**
-         * 
+         * Dash-assigned callback that should be called to report property changes
+         * to Dash, to make them available for callbacks.
          */
         setProps: PropTypes.func
     };

@@ -9,6 +9,7 @@ import PowerModeInput from './components/particles/PowerModeInput.react';
 import Weather from './components/weather/Weather.react';
 import Textfit from './components/textfit/Textfit.react';
 import Clock from './components/clock/Clock.react';
+import Snake from './components/games/Snake.react';
 
 export {
     LazyLoad,
@@ -20,5 +21,6 @@ export {
     PowerModeInput,
     Weather,
     Textfit,
-    Clock
+    Clock,
+    Snake
 };

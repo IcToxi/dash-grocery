@@ -23,7 +23,7 @@ export default class DashTextfit extends Component {
         class_name: PropTypes.string,
 
         /**
-         * 
+         * children
          */
         children: PropTypes.node,
 

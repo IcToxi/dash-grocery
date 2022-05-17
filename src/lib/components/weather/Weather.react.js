@@ -157,12 +157,12 @@ DashWeather.propTypes = {
     }),
 
     /**
-     * 
+     * Custom weather data. Refer to the format of the data obtained through the API.
      */
     customData: PropTypes.object,
 
     /**
-     * 
+     * For custom API or other. (experimental)
      */
     func: PropTypes.func
 };

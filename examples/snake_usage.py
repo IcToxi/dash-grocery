@@ -6,7 +6,9 @@ from dash import Dash, html
 
 app = Dash(__name__)
 
-app.layout = html.Div(dash_grocery.Snake())
+app.layout = html.Div(
+    dash_grocery.Snake(color1="black", color2="tomato", backgroundColor="darkgrey")
+)
 
 
 if __name__ == "__main__":

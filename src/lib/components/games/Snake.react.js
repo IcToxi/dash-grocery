@@ -43,15 +43,14 @@ export default class DashSnake extends Component {
     };
 
     render() {
-        const { class_name } = this.props;
+        const { class_name, id } = this.props;
 
         return (
-            <>
+            <div className={class_name} id={id}>
                 <Snake
                     {...omit(["class_name"], this.props)}
-                    className={class_name}
                 />
-            </>
+            </div>
         );
     }
 }

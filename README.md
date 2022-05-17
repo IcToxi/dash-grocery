@@ -10,7 +10,7 @@
         <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg?sanitize=true">
       </a>
     </td>
-    <td>
+    <td align="center">
       <span>➕➖✖➗</span>
     </td>
     <td width="45%">

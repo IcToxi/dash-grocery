@@ -43,7 +43,7 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.17.12",
     "@plotly/dash-component-plugins": "^1.2.0",
     "@plotly/webpack-dash-dynamic-import": "^1.2.0",
     "@svgr/webpack": "^6.2.1",

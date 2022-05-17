@@ -10,7 +10,7 @@
     </td>
     <td><span>➕➖✖➗</span></td>
     <td>
-      <img style="height: 100%; display: block;" src='./logo.svg'/>
+      <img style="height: 100%;" src='./logo.png'/>
     </td>
   </tr>
 </table>

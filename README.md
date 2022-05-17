@@ -5,16 +5,21 @@
 
 <table style="margin: auto; table-layout: fixed;">
   <tr>
-    <td width="48%">
-      <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg?sanitize=true">
+    <td width="47%">
+      <a href="https://dash.plotly.com/">
+        <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg?sanitize=true">
+      </a>
     </td>
-    <td><span>➕➖✖➗</span></td>
+    <td>
+      <span>➕➖✖➗</span>
+    </td>
     <td width="45%">
-      <img style="height: 100%;" src='./logo.png'/>
+      <a href="https://github.com/IcToxi/dash-grocery">
+        <img src='./logo.png' />
+      </a>
     </td>
   </tr>
 </table>
-
 
 
 

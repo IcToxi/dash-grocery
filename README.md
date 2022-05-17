@@ -5,7 +5,7 @@
 
 <table style="margin: auto; table-layout: fixed;">
   <tr>
-    <td width="47%">
+    <td width="45%">
       <a href="https://dash.plotly.com/">
         <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg?sanitize=true">
       </a>

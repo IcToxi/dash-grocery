@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Clock from 'react-live-clock';
-import { omit } from "ramda";
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import Clock from 'react-live-clock'
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [react-live-clock](https://github.com/pvoznyuk/react-live-clock).
  *
  */
 export default class DashClock extends Component {
-
-    static defaultProps = {};
+    static defaultProps = {}
 
     static propTypes = {
         /**
@@ -18,8 +17,8 @@ export default class DashClock extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -48,7 +47,7 @@ export default class DashClock extends Component {
         filter: PropTypes.func,
 
         /**
-         * If timezone is set, the date is show in this timezone. 
+         * If timezone is set, the date is show in this timezone.
          * You can find the list. here, the TZ column.
          */
         timezone: PropTypes.string,
@@ -66,22 +65,16 @@ export default class DashClock extends Component {
         /**
          * callback function on each output update
          */
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+    }
 
-    };
-
-    render() {
-        const { class_name, children } = this.props;
+    render () {
+        const {class_name, children} = this.props
 
         return (
-            <Clock
-                {...omit(["class_name"], this.props)}
-                className={class_name}
-            >{children}
+            <Clock {...omit(['class_name'], this.props)} className={class_name}>
+                {children}
             </Clock>
-        );
+        )
     }
 }
-
-
-

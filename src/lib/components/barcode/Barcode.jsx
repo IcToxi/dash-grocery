@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Barcode from 'react-barcode';
-import { omit } from "ramda";
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import Barcode from 'react-barcode'
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [react-barcode](https://github.com/kciter/react-barcode).
- * 
+ *
  */
 export default class DashBarcode extends Component {
-
     static defaultProps = {
         width: 2,
         height: 100,
-        format: "CODE128",
+        format: 'CODE128',
         displayValue: true,
-        fontOptions: "",
-        font: "monospace",
-        textAlign: "center",
-        textPosition: "bottom",
+        fontOptions: '',
+        font: 'monospace',
+        textAlign: 'center',
+        textPosition: 'bottom',
         textMargin: 2,
         fontSize: 20,
-        background: "#ffffff",
-        lineColor: "#000000",
-        margin: 10
-    };
+        background: '#ffffff',
+        lineColor: '#000000',
+        margin: 10,
+    }
 
     static propTypes = {
         /**
@@ -32,8 +31,8 @@ export default class DashBarcode extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -52,7 +51,7 @@ export default class DashBarcode extends Component {
         height: PropTypes.number,
 
         /**
-         * Select which barcode type to use. 
+         * Select which barcode type to use.
          * Please check the wikipage of the different barcode types for more information.
          */
         format: PropTypes.string,
@@ -109,7 +108,7 @@ export default class DashBarcode extends Component {
         lineColor: PropTypes.string,
 
         /**
-         * Set the space margin around the barcode. 
+         * Set the space margin around the barcode.
          * If nothing else is set, all side will inherit the margins property but can be replaced if you want to set them separably.
          */
         margin: PropTypes.number,
@@ -137,20 +136,17 @@ export default class DashBarcode extends Component {
         /**
          * Only for EAN8/EAN13
          */
-        flat: PropTypes.string
-    };
+        flat: PropTypes.string,
+    }
 
-    render() {
-        const { class_name } = this.props;
+    render () {
+        const {class_name} = this.props
 
         return (
             <Barcode
-                {...omit(["setProps", "class_name"], this.props)}
+                {...omit(['setProps', 'class_name'], this.props)}
                 className={class_name}
             />
-        );
+        )
     }
 }
-
-
-

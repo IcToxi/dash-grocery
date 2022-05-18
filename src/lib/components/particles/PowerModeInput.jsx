@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes, { oneOfType } from 'prop-types';
-import PowerModeInput from "power-mode-input";
-import { omit } from "ramda";
-import { createRef } from 'react/cjs/react.production.min';
-
+import React, {Component} from 'react'
+import PropTypes, {oneOfType} from 'prop-types'
+import PowerModeInput from 'power-mode-input'
+import {omit} from 'ramda'
+import {createRef} from 'react/cjs/react.production.min'
 
 /**
  * Wrapped from [power-mode-input](https://github.com/lindelof/power-mode-input).
- * 
+ *
  */
 export default class DashPowerModeInput extends Component {
-
     static defaultProps = {
         type: 'text',
         maxLength: 128,
@@ -22,9 +20,9 @@ export default class DashPowerModeInput extends Component {
             radius: 6,
             circle: true,
             alpha: [0.75, 0.1],
-            color: "random"
-        }
-    };
+            color: 'random',
+        },
+    }
 
     static propTypes = {
         /**
@@ -33,8 +31,8 @@ export default class DashPowerModeInput extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -76,31 +74,34 @@ export default class DashPowerModeInput extends Component {
             radius: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
             tha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
             alpha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            color: oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+            color: oneOfType([
+                PropTypes.string,
+                PropTypes.arrayOf(PropTypes.string),
+            ]),
             g: PropTypes.number,
-            circle: PropTypes.bool
+            circle: PropTypes.bool,
         }),
 
         /**
          * Dash-assigned callback that should be called to report property changes
          * to Dash, to make them available for callbacks.
          */
-        setProps: PropTypes.func
-    };
+        setProps: PropTypes.func,
+    }
 
     inputRef = createRef()
 
-    componentDidMount() {
-        PowerModeInput.make(this.inputRef.current, this.props.config);
+    componentDidMount () {
+        PowerModeInput.make(this.inputRef.current, this.props.config)
     }
 
-    render() {
-        const { class_name, value, setProps } = this.props;
+    render () {
+        const {class_name, value, setProps} = this.props
 
         return (
             <>
                 <input
-                    {...omit(["class_name", "value", "config"], this.props)}
+                    {...omit(['class_name', 'value', 'config'], this.props)}
                     className={class_name}
                     ref={this.inputRef}
                     value={value}
@@ -114,13 +115,10 @@ export default class DashPowerModeInput extends Component {
                          * app server if a callback uses the modified prop as
                          * Input or State.
                          */
-                        e => setProps({ value: e.target.value })
+                        e => setProps({value: e.target.value})
                     }
                 />
             </>
-        );
+        )
     }
 }
-
-
-

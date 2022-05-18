@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes, { oneOfType } from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes, {oneOfType} from 'prop-types'
 import ParticlesBg from 'particles-bg'
-import { omit } from "ramda";
-
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [particles-bg](https://github.com/lindelof/particles-bg).
- * 
+ *
  */
 export default class DashParticlesBg extends Component {
-
     static defaultProps = {
         color: 'random',
         type: 'random',
-        bg: true
-    };
+        bg: true,
+    }
 
     static propTypes = {
         /**
@@ -23,8 +21,8 @@ export default class DashParticlesBg extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -34,19 +32,26 @@ export default class DashParticlesBg extends Component {
         type: PropTypes.string,
 
         /**
-        * The number of particles emitted each time, generally not set
-        */
+         * The number of particles emitted each time, generally not set
+         */
         num: PropTypes.number,
 
         /**
-        * The background color or particle color of the particle scene
-        */
-        color: oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+         * The background color or particle color of the particle scene
+         */
+        color: oneOfType([
+            PropTypes.string,
+            PropTypes.arrayOf(PropTypes.string),
+        ]),
 
         /**
-        * Eliminate dom's className without triggering animation
-        */
-        bg: PropTypes.oneOfType([PropTypes.bool, PropTypes.object, PropTypes.string]),
+         * Eliminate dom's className without triggering animation
+         */
+        bg: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.object,
+            PropTypes.string,
+        ]),
 
         /**
          * You can use type="custom" to achieve a higher degree of freedom for the particle background.
@@ -63,28 +68,28 @@ export default class DashParticlesBg extends Component {
             alpha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
             scale: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
             position: PropTypes.string,
-            color: oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+            color: oneOfType([
+                PropTypes.string,
+                PropTypes.arrayOf(PropTypes.string),
+            ]),
             cross: PropTypes.string,
             random: oneOfType([PropTypes.number, PropTypes.bool]),
             g: PropTypes.number,
             f: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            func: PropTypes.func
-        })
-    };
+            func: PropTypes.func,
+        }),
+    }
 
-    render() {
-        const { class_name } = this.props;
+    render () {
+        const {class_name} = this.props
 
         return (
             <>
                 <ParticlesBg
-                    {...omit(["setProps", "class_name"], this.props)}
+                    {...omit(['setProps', 'class_name'], this.props)}
                     className={class_name}
                 />
             </>
-        );
+        )
     }
 }
-
-
-

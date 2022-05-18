@@ -1,48 +1,50 @@
-const path = require('path');
-const webpack = require('webpack');
-const packagejson = require('./package.json');
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
+const path = require('path')
+const webpack = require('webpack')
+const packagejson = require('./package.json')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import')
 
-const dashLibraryName = packagejson.name.replace(/-/g, '_');
+const dashLibraryName = packagejson.name.replace(/-/g, '_')
 
 module.exports = (env, argv) => {
+    let mode
 
-    let mode;
-
-    const overrides = module.exports || {};
+    const overrides = module.exports || {}
 
     // if user specified mode flag take that value
     if (argv && argv.mode) {
-        mode = argv.mode;
+        mode = argv.mode
     }
 
     // else if configuration object is already set (module.exports) use that value
     else if (overrides.mode) {
-        mode = overrides.mode;
+        mode = overrides.mode
     }
 
     // else take webpack default (production)
     else {
-        mode = 'production';
+        mode = 'production'
     }
 
-    let filename = (overrides.output || {}).filename;
+    let filename = (overrides.output || {}).filename
     if (!filename) {
-        const modeSuffix = mode === 'development' ? 'dev' : 'min';
-        filename = `${dashLibraryName}.${modeSuffix}.js`;
+        const modeSuffix = mode === 'development' ? 'dev' : 'min'
+        filename = `${dashLibraryName}.${modeSuffix}.js`
     }
 
-    const entry = overrides.entry || { main: './src/lib/index.js' };
+    const entry = overrides.entry || {main: './src/lib/index.js'}
 
-    const devtool = overrides.devtool || 'source-map';
+    const devtool = overrides.devtool || 'source-map'
 
-    const externals = ('externals' in overrides) ? overrides.externals : ({
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'plotly.js': 'Plotly',
-        'prop-types': 'PropTypes',
-    });
+    const externals =
+        'externals' in overrides
+            ? overrides.externals
+            : {
+                  react: 'React',
+                  'react-dom': 'ReactDOM',
+                  'plotly.js': 'Plotly',
+                  'prop-types': 'PropTypes',
+              }
 
     return {
         mode,
@@ -71,8 +73,8 @@ module.exports = (env, argv) => {
                         {
                             loader: 'style-loader',
                             options: {
-                                insertAt: 'top'
-                            }
+                                insertAt: 'top',
+                            },
                         },
                         {
                             loader: 'css-loader',
@@ -81,6 +83,9 @@ module.exports = (env, argv) => {
                 },
             ],
         },
+        resolve: {
+            extensions: ['*', '.js', '.jsx'],
+        },
         optimization: {
             splitChunks: {
                 name: '[name].js',
@@ -88,9 +93,9 @@ module.exports = (env, argv) => {
                     async: {
                         chunks: 'async',
                         minSize: 0,
-                        name(module, chunks, cacheGroupKey) {
-                            return `${cacheGroupKey}-${chunks[0].name}`;
-                        }
+                        name (module, chunks, cacheGroupKey) {
+                            return `${cacheGroupKey}-${chunks[0].name}`
+                        },
                     },
                     // shared: {
                     //     chunks: 'all',
@@ -98,16 +103,16 @@ module.exports = (env, argv) => {
                     //     minChunks: 2,
                     //     name: ''
                     // }
-                }
-            }
+                },
+            },
         },
         plugins: [
             new WebpackDashDynamicImport(),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
-                exclude: ['async-plotlyjs']
+                exclude: ['async-plotlyjs'],
             }),
-            new NodePolyfillPlugin()
-        ]
-    };
-};
+            new NodePolyfillPlugin(),
+        ],
+    }
+}

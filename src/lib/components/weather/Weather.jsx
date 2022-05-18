@@ -1,40 +1,52 @@
-import ReactWeather, { useOpenWeather, useWeatherBit, useVisualCrossing } from 'react-open-weather';
-import PropTypes from 'prop-types';
-import { omit, pick } from "ramda";
+import ReactWeather, {
+    useOpenWeather,
+    useWeatherBit,
+    useVisualCrossing,
+} from 'react-open-weather'
+import PropTypes from 'prop-types'
+import {omit, pick} from 'ramda'
 
 /**
  * Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
  *
  */
-const DashWeather = (props) => {
+const DashWeather = props => {
     const services = {
-        'OpenWeather': useOpenWeather,
-        'WeatherBit': useWeatherBit,
-        'VisualCrossing': useVisualCrossing
-    };
+        OpenWeather: useOpenWeather,
+        WeatherBit: useWeatherBit,
+        VisualCrossing: useVisualCrossing,
+    }
 
-    const { data, isLoading, errorMessage } = (props.option === 'custom' ?
-        props.func(...props) :
-        services[props.option]({
-            key: props.api_key,
-            ...pick(["lat", "lon", "lang", "unit"], props)
-        }));
+    const {data, isLoading, errorMessage} =
+        props.option === 'custom'
+            ? props.func(...props)
+            : services[props.option]({
+                  key: props.api_key,
+                  ...pick(['lat', 'lon', 'lang', 'unit'], props),
+              })
 
     return (
         <ReactWeather
-            {
-            ...omit(
-                ["api_key", "lat", "lon", "unit", "class_name", "option", "customData", "func"],
+            {...omit(
+                [
+                    'api_key',
+                    'lat',
+                    'lon',
+                    'unit',
+                    'class_name',
+                    'option',
+                    'customData',
+                    'func',
+                ],
                 props
-            )
-            }
+            )}
             className={props.class_name}
             data={data}
             isLoading={isLoading}
             errorMessage={errorMessage}
         />
-    );
-};
+    )
+}
 
 DashWeather.defaultProps = {
     lat: '48.137154',
@@ -42,7 +54,7 @@ DashWeather.defaultProps = {
     lang: 'en',
     unit: 'metric',
     locationLabel: 'Munich',
-    unitsLabels: { temperature: 'C', windSpeed: 'Km/h' },
+    unitsLabels: {temperature: 'C', windSpeed: 'Km/h'},
     option: 'OpenWeather',
     showForecast: true,
     theme: {
@@ -64,13 +76,12 @@ DashWeather.defaultProps = {
         forecastRangeColor: '#777',
         forecastIconColor: '#4BC4F7',
     },
-    func: ((...props) => ({
+    func: (...props) => ({
         data: props.customData,
         isLoading: null,
-        errorMessage: null
-    }))
-};
-
+        errorMessage: null,
+    }),
+}
 
 // values are (metric, standard, imperial)
 DashWeather.propTypes = {
@@ -80,8 +91,8 @@ DashWeather.propTypes = {
     id: PropTypes.string,
 
     /**
-    * Often used with CSS to style elements with common properties
-    */
+     * Often used with CSS to style elements with common properties
+     */
     class_name: PropTypes.string,
 
     /**
@@ -120,7 +131,7 @@ DashWeather.propTypes = {
      */
     unitsLabels: PropTypes.shape({
         temperature: PropTypes.string,
-        windSpeed: PropTypes.string
+        windSpeed: PropTypes.string,
     }),
 
     /**
@@ -164,8 +175,7 @@ DashWeather.propTypes = {
     /**
      * For custom API or other. (experimental)
      */
-    func: PropTypes.func
-};
+    func: PropTypes.func,
+}
 
-
-export default DashWeather;
+export default DashWeather

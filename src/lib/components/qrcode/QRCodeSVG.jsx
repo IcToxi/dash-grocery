@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { QRCodeCanvas } from 'qrcode.react';
-import { omit } from "ramda";
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {QRCodeSVG} from 'qrcode.react'
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [qrcode.react](https://github.com/zpao/qrcode.react).
  *
  */
-export default class DashQRCodeCanvas extends Component {
-
-    static defaultProps = {};
+export default class DashQRCodeSVG extends Component {
+    static defaultProps = {}
 
     static propTypes = {
         /**
@@ -18,8 +17,8 @@ export default class DashQRCodeCanvas extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -33,13 +32,13 @@ export default class DashQRCodeCanvas extends Component {
         size: PropTypes.number,
 
         /**
-        * Background color. "#FFFFFF" 
-        */
+         * Background color. "#FFFFFF"
+         */
         bgColor: PropTypes.string,
 
         /**
-        * Foreground color. "#000000" 
-        */
+         * Foreground color. "#000000"
+         */
         fgColor: PropTypes.string,
 
         /**
@@ -84,23 +83,18 @@ export default class DashQRCodeCanvas extends Component {
             /**
              * excavate
              */
-            excavate: PropTypes.bool
-        })
+            excavate: PropTypes.bool,
+        }),
+    }
 
-    };
-
-    render() {
-        const { class_name } = this.props;
+    render () {
+        const {class_name} = this.props
 
         return (
-            <QRCodeCanvas
-                {...omit(["setProps", "class_name"], this.props)}
+            <QRCodeSVG
+                {...omit(['setProps', 'class_name'], this.props)}
                 className={class_name}
-            >
-            </QRCodeCanvas >
-        );
+            ></QRCodeSVG>
+        )
     }
 }
-
-
-

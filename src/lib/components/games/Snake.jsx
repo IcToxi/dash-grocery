@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Snake from 'snake-game-react';
-import { omit } from "ramda";
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import Snake from 'snake-game-react'
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [react-snake](https://github.com/derrmru/react-snake).
  *
  */
 export default class DashSnake extends Component {
-
     static defaultProps = {
-        color1: "#248ec2",
-        color2: "#1d355e",
-        backgroundColor: "#ebebeb"
-    };
+        color1: '#248ec2',
+        color2: '#1d355e',
+        backgroundColor: '#ebebeb',
+    }
 
     static propTypes = {
         /**
@@ -22,8 +21,8 @@ export default class DashSnake extends Component {
         id: PropTypes.string,
 
         /**
-        * Often used with CSS to style elements with common properties
-        */
+         * Often used with CSS to style elements with common properties
+         */
         class_name: PropTypes.string,
 
         /**
@@ -39,21 +38,16 @@ export default class DashSnake extends Component {
         /**
          * background.
          */
-        backgroundColor: PropTypes.string
-    };
+        backgroundColor: PropTypes.string,
+    }
 
-    render() {
-        const { class_name, id } = this.props;
+    render () {
+        const {class_name, id} = this.props
 
         return (
             <div className={class_name} id={id}>
-                <Snake
-                    {...omit(["class_name", "id"], this.props)}
-                />
+                <Snake {...omit(['class_name', 'id'], this.props)} />
             </div>
-        );
+        )
     }
 }
-
-
-

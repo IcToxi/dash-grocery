@@ -34,10 +34,12 @@
     "react-barcode": "^1.4.1",
     "react-lazyload": "^3.2.0",
     "react-live-clock": "^5.9.1",
+    "react-masonry-component": "^6.3.0",
     "react-moment": "^1.1.2",
     "react-mouse-particles": "^1.1.5",
     "react-open-weather": "^1.2.0",
-    "react-textfit": "^1.1.1"
+    "react-textfit": "^1.1.1",
+    "snake-game-react": "^1.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",
@@ -62,7 +64,6 @@
     "react": "^16.14.0",
     "react-docgen": "^5.4.0",
     "react-dom": "^16.8.6",
-    "snake-game-react": "^1.0.6",
     "style-loader": "^3.3.1",
     "styled-jsx": "^5.0.2",
     "svg-loader": "^0.0.2",

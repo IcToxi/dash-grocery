@@ -47,7 +47,7 @@ app.layout = html.Div(
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
 ```
 
 # Contributing
@@ -66,3 +66,4 @@ yarn
 1. Introduce CI.
 2. Add testing.
 3. Update documentation.
+4. More interesting components.

@@ -7,9 +7,7 @@ import {omit} from 'ramda'
  * Wrapped from [react-masonry-component](https://github.com/eiriklv/react-masonry-component).
  */
 export default class DashMasonry extends Component {
-    static defaultProps = {
-        imagesLoadedOptions: {background: '.my-bg-image-el'},
-    }
+    static defaultProps = {}
 
     static propTypes = {
         /**
@@ -125,7 +123,27 @@ export default class DashMasonry extends Component {
         /**
          * default {}
          */
-        imagesLoadedOptions: PropTypes.Object,
+        imagesLoadedOptions: PropTypes.object,
+
+        /**
+         * onImagesLoaded
+         */
+        onImagesLoaded: PropTypes.func,
+
+        /**
+         * enableResizableChildren
+         */
+        enableResizableChildren: PropTypes.bool,
+
+        /**
+         * func onLayoutComplete
+         */
+        onLayoutComplete: PropTypes.func,
+
+        /**
+         * func onRemoveComplete
+         */
+        onRemoveComplete: PropTypes.func,
 
         /**
          * style

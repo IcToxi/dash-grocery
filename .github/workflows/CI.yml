@@ -1,16 +1,18 @@
 name: CI
 on: [push]
 jobs:
-  build:
-    name: Build Test
-    runs-on: ubuntu-latest
-    env:
-      PYTHON: '3.10'
-    steps:
-      - uses: actions/checkout@v3  
-      - uses: logikal-code/pip-install@v1.0.0
-      - uses: c-hive/gha-yarn-cache@v2
-      - name: Install dependencies
-        run: yarn install
-      - name: Build
-        run: yarn build
+    build:
+        name: Build Test
+        runs-on: ubuntu-latest
+        env:
+            PYTHON: '3.10'
+        steps:
+            - uses: actions/checkout@v3
+            - uses: logikal-code/pip-install@v1.0.0
+            - uses: c-hive/gha-yarn-cache@v2
+            - name: Install dependencies
+              run: yarn install
+            - name: Build
+              run: yarn build
+            - name: Test
+              run: echo 'WIP'

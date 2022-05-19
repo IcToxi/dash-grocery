@@ -1,7 +1,22 @@
-[![PyPI Latest Release](https://img.shields.io/pypi/v/dash-grocery.svg)](https://pypi.org/project/dash-dash-grocery/)
 
 
-
+<center>
+  <a href="https://pypi.org/project/dash-grocery/">
+    <img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery.svg" />
+  </a>
+  <a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/alerts/">
+    <img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
+  </a>
+  <a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/context:javascript">
+    <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
+  </a>
+  <a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/context:python">
+    <img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
+  </a>
+  <a href="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml">
+    <img src="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml/badge.svg" />
+  </a>
+</center>
 
 <table style="margin: auto; table-layout: fixed;">
   <tr>

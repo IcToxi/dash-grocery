@@ -7,7 +7,7 @@ jobs:
     env:
       PYTHON: '3.10'
     steps:
-      - uses: actions/checkout@v3      
+      - uses: actions/checkout@main      
       - uses: logikal-code/pip-install@main    
       - uses: borales/actions-yarn@main
         with:

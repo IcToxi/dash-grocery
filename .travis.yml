@@ -1,0 +1,11 @@
+language: node_js
+python: 
+  - "3.10" 
+cache:
+  yarn: true
+  directories:
+    - ./.yarn/cache
+ 
+install: pip install -r requirements.txt && yarn
+
+script: yarn build

@@ -15,7 +15,7 @@
     </td>
     <td width="45%">
       <a href="https://github.com/IcToxi/dash-grocery">
-        <img src='./logo.png' />
+        <img src='https://raw.githubusercontent.com/IcToxi/dash-grocery/main/logo.png' />
       </a>
     </td>
   </tr>

@@ -58,6 +58,12 @@ export default class DashClock extends Component {
         ticking: PropTypes.bool,
 
         /**
+         * If you want the clock's last colon to blink.
+         * Set it to all to make them all blink.
+         */
+        blinking: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+
+        /**
          * Auto-updating period for the clock. 1 second is a default value.
          */
         interval: PropTypes.number,

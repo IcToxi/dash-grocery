@@ -9,7 +9,9 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         dash_grocery.Textfit(
-            dash_grocery.Clock(format="dd, MMMM Mo, YY, HH:mm:ss", ticking=True),
+            dash_grocery.Clock(
+                format="dd, MMMM Mo, YY, HH:mm:ss", blinking="all", ticking=True
+            ),
             max=400,
             mode="single",
         )

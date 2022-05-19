@@ -12,7 +12,7 @@ app.layout = html.Div(
             html.Div(
                 html.Img(
                     src="https://hddesktopwallpapers.in/wp-content/uploads/2015/09/cat-eyes-cute.jpg",
-                    height=300,
+                    height=100,
                 )
             )
             for i in range(50)

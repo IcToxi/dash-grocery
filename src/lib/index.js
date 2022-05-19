@@ -10,7 +10,7 @@ import Weather from './components/weather/Weather'
 import Textfit from './components/textfit/Textfit'
 import Clock from './components/clock/Clock'
 import Snake from './components/games/Snake'
-//import Masonry from './components/masonry/Masonry'
+import Masonry from './components/masonry/Masonry'
 
 export {
     LazyLoad,
@@ -24,5 +24,5 @@ export {
     Textfit,
     Clock,
     Snake,
-    //Masonry,
+    Masonry,
 }

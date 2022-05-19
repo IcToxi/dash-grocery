@@ -86,7 +86,7 @@ export default class DashMasonry extends Component {
             /**
              * CSS styles that are applied to the container element.
              */
-            containerStyle: PropTypes.Object,
+            containerStyle: PropTypes.object,
             /**
              * Duration of the transition when items change position or appearance,
              * set in a CSS time format. Default: transitionDuration: '0.4s'
@@ -148,7 +148,7 @@ export default class DashMasonry extends Component {
         /**
          * style
          */
-        style: PropTypes.Object,
+        style: PropTypes.object,
     }
 
     render () {

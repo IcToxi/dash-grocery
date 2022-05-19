@@ -16,6 +16,7 @@
   <a href="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml">
     <img src="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml/badge.svg" />
   </a>
+  <a href="https://pypi.org/project/dash-grocery/"><img src="https://static.pepy.tech/personalized-badge/dash-grocery?period=total&units=international_system&left_color=dimgrey&right_color=seagreen&left_text=Downloads"/></a>
 </center>
 
 <table style="margin: auto; table-layout: fixed;">

@@ -2,7 +2,7 @@ import os, sys
 
 sys.path.append(os.path.dirname(sys.path[0]))
 import dash_grocery
-from dash import html, dcc, Dash
+from dash import html, Dash
 
 app = Dash(__name__)
 

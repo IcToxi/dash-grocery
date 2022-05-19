@@ -14,14 +14,14 @@
   "scripts": {
     "start": "webpack-serve --config ./webpack.serve.config.js --open",
     "validate-init": "python _validate_init.py",
-    "prepublishOnly": "npm run validate-init",
+    "prepublishOnly": "yarn run validate-init",
     "build:js": "webpack --mode production",
     "build:py_and_r": "dash-generate-components ./src/lib/components dash_grocery -p package-info.json --r-prefix ''",
-    "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
-    "build": "npm run build:js && npm run build:py_and_r",
+    "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && yarn run build:py_and_r)",
+    "build": "yarn run build:js && yarn run build:py_and_r",
     "build:py": "dash-generate-components ./src/lib/components dash_grocery -p package-info.json",
-    "build_no_r": "npm run build:js && npm run build:py",
-    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
+    "build_no_r": "yarn run build:js && yarn run build:py",
+    "build:activated": "yarn run build:js && yarn run build:py_and_r-activated"
   },
   "author": "IcToxi <example@email.com>",
   "license": "MIT",
@@ -74,9 +74,9 @@
     "webpack-serve": "^4.0.0"
   },
   "engines": {
-    "node": ">=8.11.0",
-    "npm": ">=6.1.0",
-    "yarn": ">=1.22.18"
+    "node": ">=16.15.0",
+    "npm": ">=8.5.10",
+    "yarn": ">=3.2.1"
   },
   "packageManager": "yarn@3.2.1"
 }

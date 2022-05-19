@@ -7,11 +7,11 @@ jobs:
     env:
       PYTHON: '3.10'
     steps:
-      - uses: actions/checkout@latest     
-      - uses: logikal-code/pip-install@latest    
-      - uses: borales/actions-yarn@latest
+      - uses: actions/checkout@v3  
+      - uses: logikal-code/pip-install@v1.0.0
+      - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@latest
+      - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build # will run `yarn build` command

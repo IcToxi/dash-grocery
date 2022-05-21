@@ -16,4 +16,4 @@ jobs:
             - name: Build
               run: yarn build
             - name: Test
-              run: pytest tests
+              run: pytest --webdriver Firefox tests

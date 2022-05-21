@@ -15,4 +15,5 @@ jobs:
             - name: Build
               run: yarn build
             - name: Test
-              run: echo 'WIP'
+            - uses: nanasess/setup-chromedriver@v1.0.7
+              run: pytest tests

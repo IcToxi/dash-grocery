@@ -1,3 +1,6 @@
 # dash is required to call `build:py`
 dash[dev]>=2.4.1
 black>=22.3.0
+beautifulsoup4>=4.11.1
+percy>=2.0.2
+pytest>=7.1.2

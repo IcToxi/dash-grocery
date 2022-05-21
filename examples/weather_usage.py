@@ -29,14 +29,12 @@ app.layout = html.Div(
 )
 
 
-@app.callback(
+app.callback(
     [Output("dw-1", "lat"), Output("dw-1", "lon"), Output("dw-1", "locationLabel")],
     Input(btn, "n_clicks"),
     [State(lat, "value"), State(lon, "value"), State(city, "value")],
     prevent_initial_call=True,
-)
-def update(n, lat, lon, city):
-    return lat, lon, city
+)(lambda n, lat, lon, city: [lat, lon, city])
 
 
 if __name__ == "__main__":

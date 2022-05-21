@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: logikal-code/pip-install@v1.0.0
-            - uses: nanasess/setup-chromedriver@v1.0.7
+            - uses: browser-actions/setup-geckodriver@latest
             - uses: c-hive/gha-yarn-cache@v2
             - name: Install dependencies
               run: yarn install

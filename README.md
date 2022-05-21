@@ -24,7 +24,7 @@
 
 <p align="center">
 	<a href="https://pypi.org/project/dash-grocery/">
-		<img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery.svg" />
+		<img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery" />
 	</a>
 	<a href="https://pepy.tech/project/dash-grocery/">
 		<img src="https://pepy.tech/badge/dash-grocery" />
@@ -41,11 +41,20 @@
 	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml">
 		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml/badge.svg" />
 	</a>
+	<a href="https://github.com/IcToxi/dash-grocery/">
+		<img src="https://img.shields.io/snyk/vulnerabilities/github/IcToxi/dash-grocery" />
+	</a>
 	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml">
 		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml/badge.svg" />
 	</a>
 	<a href="https://app.codecov.io/gh/IcToxi/dash-grocery">
 		<img src="https://img.shields.io/codecov/c/github/IcToxi/dash-grocery?logo=codecov" />
+	</a>	
+	<a href="https://github.com/IcToxi/dash-grocery/blob/main/LICENSE">
+		<img src="https://img.shields.io/github/license/IcToxi/dash-grocery" />
+	</a>
+	<a href="https://github.com/IcToxi/dash-grocery/pulls">
+		<img src="https://img.shields.io/badge/PRs-welcome-seagreen" />
 	</a>
 </p>
 

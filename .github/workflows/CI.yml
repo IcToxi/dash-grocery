@@ -9,11 +9,11 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: logikal-code/pip-install@v1.0.0
+            - uses: nanasess/setup-chromedriver@v1.0.7
             - uses: c-hive/gha-yarn-cache@v2
             - name: Install dependencies
               run: yarn install
             - name: Build
               run: yarn build
             - name: Test
-            - uses: nanasess/setup-chromedriver@v1.0.7
               run: pytest tests

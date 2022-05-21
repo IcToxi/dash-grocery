@@ -19,10 +19,8 @@ jobs:
             - uses: c-hive/gha-yarn-cache@v2
             - name: Install dependencies
               run: yarn install
-            - name: Build
-              run: yarn build
-            - name: Test
-              run: pytest --webdriver Firefox --cov=./dash_grocery --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+            - name: Build & Test
+              run: yarn build && pytest --webdriver Firefox --cov=./dash_grocery --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
             - name: Upload Results
               uses: actions/upload-artifact@v3.1.0
               with:

@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
-    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
     "@plotly/dash-component-plugins": "^1.2.0",
     "@plotly/webpack-dash-dynamic-import": "^1.2.0",

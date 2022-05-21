@@ -89,7 +89,5 @@ yarn
 4. Create a branch and raise a PR, it would be nice to have a detailed description.
    
 # TODO
-1. Introduce CI.
-2. Add testing.
-3. Update documentation.
-4. More interesting components.
+1. Update documentation.
+2. More interesting components.

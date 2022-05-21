@@ -9,14 +9,14 @@ jobs:
         name: Build Test
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/setup-python
+            - uses: actions/setup-python@v3
               with:
                   python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
                   architecture: 'x64'
-            - uses: actions/checkout
-            - uses: logikal-code/pip-install
-            - uses: browser-actions/setup-geckodriver
-            - uses: c-hive/gha-yarn-cache
+            - uses: actions/checkout@v3
+            - uses: logikal-code/pip-install@v1.0.0
+            - uses: browser-actions/setup-geckodriver@latest
+            - uses: c-hive/gha-yarn-cache@v2
             - name: Install dependencies
               run: yarn install
             - name: Build & Test
@@ -24,10 +24,10 @@ jobs:
                   yarn build   
                   pytest --webdriver Firefox --cov=dash_grocery --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
             - name: Upload Results
-              uses: actions/upload-artifact
+              uses: actions/upload-artifact@v3.1.0
               with:
                   path: junit/test-results-${{ matrix.python-version }}.xml
               if: ${{ always() }}
 
             - name: Upload to Codecov
-              uses: codecov/codecov-action
+              uses: codecov/codecov-action@v3.1.0

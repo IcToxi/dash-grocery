@@ -300,4 +300,6 @@ Project.toml
 dash_grocery/*
 !dash_grocery/__init__.py
 
+junit/
+
 

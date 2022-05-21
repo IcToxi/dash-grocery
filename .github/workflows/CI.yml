@@ -1,5 +1,9 @@
 name: CI
-on: [push]
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 jobs:
     build:
         name: Build Test
@@ -18,4 +22,12 @@ jobs:
             - name: Build
               run: yarn build
             - name: Test
-              run: pytest --webdriver Firefox tests
+              run: pytest --webdriver Firefox --cov=dash_extensions --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+            - name: Upload Results
+              uses: actions/upload-artifact@v3.1.0
+              with:
+                  path: junit/test-results-${{ matrix.python-version }}.xml
+              if: ${{ always() }}
+
+            - name: Upload to Codecov
+              uses: codecov/codecov-action@v3.1.0

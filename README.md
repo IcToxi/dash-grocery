@@ -26,8 +26,8 @@
 	<a href="https://pypi.org/project/dash-grocery/">
 		<img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery.svg" />
 	</a>
-	<a href="https://pypi.org/project/dash-grocery/">
-		<img src="https://static.pepy.tech/personalized-badge/dash-grocery?period=total&units=international_system&left_color=dimgrey&right_color=seagreen&left_text=Downloads" />
+	<a href="https://pepy.tech/project/dash-grocery/">
+		<img src="https://pepy.tech/badge/dash-grocery" />
 	</a>  
 	<a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/alerts/">
 		<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />

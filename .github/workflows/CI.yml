@@ -22,7 +22,7 @@ jobs:
             - name: Build & Test
               run: |
                   yarn build   
-                  pytest --webdriver Firefox --cov=src --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+                  pytest --webdriver Firefox --cov=./ --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
             - name: Upload Results
               uses: actions/upload-artifact@v3.1.0
               with:
@@ -31,3 +31,5 @@ jobs:
 
             - name: Upload to Codecov
               uses: codecov/codecov-action@v3.1.0
+              with:
+                  directory: ./coverage/reports/

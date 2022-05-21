@@ -26,6 +26,9 @@
 	<a href="https://pypi.org/project/dash-grocery/">
 		<img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery.svg" />
 	</a>
+	<a href="https://pypi.org/project/dash-grocery/">
+		<img src="https://static.pepy.tech/personalized-badge/dash-grocery?period=total&units=international_system&left_color=dimgrey&right_color=seagreen&left_text=Downloads" />
+	</a>  
 	<a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/alerts/">
 		<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
 	</a>
@@ -38,11 +41,11 @@
 	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml">
 		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml/badge.svg" />
 	</a>
-	<a href="https://pypi.org/project/dash-grocery/">
-		<img src="https://static.pepy.tech/personalized-badge/dash-grocery?period=total&units=international_system&left_color=dimgrey&right_color=seagreen&left_text=Downloads" />
-	</a>
 	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml">
 		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml/badge.svg" />
+	</a>
+	<a href="https://app.codecov.io/gh/IcToxi/dash-grocery">
+		<img src="https://img.shields.io/codecov/c/github/IcToxi/dash-grocery?logo=codecov" />
 	</a>
 </p>
 

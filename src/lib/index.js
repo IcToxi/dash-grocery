@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import LazyLoad from './components/lazyload/LazyLoad'
+import LazyLoad from './components/lazy_load/LazyLoad'
 import QRCodeSVG from './components/qrcode/QRCodeSVG'
 import QRCodeCanvas from './components/qrcode/QRCodeCanvas'
 import Barcode from './components/barcode/Barcode'
@@ -11,6 +11,8 @@ import Textfit from './components/textfit/Textfit'
 import Clock from './components/clock/Clock'
 import Snake from './components/games/Snake'
 import Masonry from './components/masonry/Masonry'
+import GridLayout from './components/grid_layout/GridLayout'
+import ResponsiveGridLayout from './components/grid_layout/ResponsiveGridLayout'
 
 export {
     LazyLoad,
@@ -25,4 +27,6 @@ export {
     Clock,
     Snake,
     Masonry,
+    GridLayout,
+    ResponsiveGridLayout,
 }

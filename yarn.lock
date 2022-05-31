@@ -3565,7 +3565,7 @@ __metadata:
     ramda: ^0.28.0
     react: ^16.14.0
     react-barcode: ^1.4.1
-    react-docgen: ^5.4.0
+    react-docgen: ^5.4.1
     react-dom: ^16.8.6
     react-grid-layout: ^1.3.4
     react-lazyload: ^3.2.0
@@ -7291,9 +7291,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-docgen@npm:^5.4.0":
-  version: 5.4.0
-  resolution: "react-docgen@npm:5.4.0"
+"react-docgen@npm:^5.4.1":
+  version: 5.4.1
+  resolution: "react-docgen@npm:5.4.1"
   dependencies:
     "@babel/core": ^7.7.5
     "@babel/generator": ^7.12.11
@@ -7307,7 +7307,7 @@ __metadata:
     strip-indent: ^3.0.0
   bin:
     react-docgen: bin/react-docgen.js
-  checksum: b0f16789437c75b02ba726c7c94ed902dfcdf66d11f271232c46d270d7eadc7eabbad95587cc70996bbbe5fea1e860afe0dc2659fa22d5773cef1e8deb7fa2ce
+  checksum: ed8f5d8d3084de4514d2de9d331e1bfc2249279c15b59f86a97dfc79c3c1c461d9af59aa8980e5745bdd2fb6877b084d304b3a4942185a6da603a2e8bd401a93
   languageName: node
   linkType: hard
 

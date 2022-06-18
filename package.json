@@ -38,7 +38,7 @@
     "react-masonry-component": "^6.3.0",
     "react-moment": "^1.1.2",
     "react-mouse-particles": "^1.1.5",
-    "react-open-weather": "^1.2.0",
+    "react-open-weather": "^1.2.1",
     "react-textfit": "^1.1.1",
     "snake-game-react": "^1.0.6"
   },
@@ -63,7 +63,7 @@
     "node-polyfill-webpack-plugin": "^1.1.4",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
-    "react-docgen": "^5.4.1",
+    "react-docgen": "^5.4.2",
     "react-dom": "^16.8.6",
     "style-loader": "^3.3.1",
     "styled-jsx": "^5.0.2",
@@ -71,7 +71,7 @@
     "terser-webpack-plugin": "^5.3.3",
     "url-loader": "^4.1.1",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.9.2",
+    "webpack-cli": "^4.10.0",
     "webpack-serve": "^4.0.0"
   },
   "engines": {

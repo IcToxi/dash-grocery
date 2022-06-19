@@ -2,11 +2,11 @@ name: black-action
 on: [push, pull_request]
 jobs:
   linter_name:
-    name: runner / black
+    name: black formatter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check files using the black formatter
+      - name: Check files
         uses: rickstaa/action-black@v1
         id: action_black
         with:
@@ -15,7 +15,7 @@ jobs:
         if: steps.action_black.outputs.is_formatted == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # token: ${{ secrets.GITHUB_TOKEN }}
           title: "Format Python code with psf/black push"
           commit-message: ":art: Format Python code with psf/black"
           body: |

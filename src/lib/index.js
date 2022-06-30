@@ -11,8 +11,9 @@ import Textfit from './components/textfit/Textfit'
 import Clock from './components/clock/Clock'
 import Snake from './components/games/Snake'
 import Masonry from './components/masonry/Masonry'
-import GridLayout from './components/grid_layout/GridLayout'
-import ResponsiveGridLayout from './components/grid_layout/ResponsiveGridLayout'
+// import GridLayout from './components/grid_layout/GridLayout'
+// import ResponsiveGridLayout from './components/grid_layout/ResponsiveGridLayout'
+import Stars from './components/stars/Stars'
 
 export {
     LazyLoad,
@@ -27,6 +28,7 @@ export {
     Clock,
     Snake,
     Masonry,
-    GridLayout,
-    ResponsiveGridLayout,
+    // GridLayout,
+    // ResponsiveGridLayout,
+    Stars,
 }

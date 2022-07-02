@@ -63,16 +63,35 @@ export default class DashReactStars extends Component {
         /**
          * Will be invoked any time the rating is changed
          */
-        onChange: PropTypes.func,
+        //onChange: PropTypes.func,
+
+        /**
+         * Dash-assigned callback that should be called to report property changes
+         * to Dash, to make them available for callbacks.
+         */
+        setProps: PropTypes.func,
     }
 
     render () {
-        const {class_name} = this.props
+        const {class_name, value, setProps} = this.props
 
         return (
             <ReactStars
                 {...omit(['setProps', 'class_name'], this.props)}
                 className={class_name}
+                value={value}
+                onChange={
+                    /*
+                     * Send the new value to the parent component.
+                     * setProps is a prop that is automatically supplied
+                     * by dash's front-end ("dash-renderer").
+                     * In a Dash app, this will update the component's
+                     * props and send the data back to the Python Dash
+                     * app server if a callback uses the modified prop as
+                     * Input or State.
+                     */
+                    v => setProps({value: v})
+                }
             ></ReactStars>
         )
     }

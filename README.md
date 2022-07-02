@@ -98,5 +98,5 @@ yarn
 4. Create a branch and raise a PR, it would be nice to have a detailed description.
    
 # TODO
-1. Update documentation.
+1. Update [documentation](https://dash-grocery.gitbook.io/docs/).
 2. More interesting components.

@@ -64,7 +64,7 @@
     "node-polyfill-webpack-plugin": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
-    "react-docgen": "^5.4.2",
+    "react-docgen": "^5.4.3",
     "react-dom": "^16.8.6",
     "style-loader": "^3.3.1",
     "styled-jsx": "^5.0.2",

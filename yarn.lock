@@ -4456,7 +4456,7 @@ __metadata:
     qrcode.react: ^3.1.0
     ramda: ^0.28.0
     react: ^16.14.0
-    react-barcode: ^1.4.1
+    react-barcode: ^1.4.2
     react-docgen: ^5.4.3
     react-dom: ^16.8.6
     react-grid-layout: ^1.3.4
@@ -8149,15 +8149,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-barcode@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "react-barcode@npm:1.4.1"
+"react-barcode@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "react-barcode@npm:1.4.2"
   dependencies:
     jsbarcode: ^3.8.0
     prop-types: ^15.6.2
   peerDependencies:
-    react: ^16.0.0 || ^17.0.0
-  checksum: e958813d76b3634c0990bea5a8790e69021e92da825f27db2e26fb387e6d3286e533f39f84a8fa1250c3c1ef3ea9f33415b895e6f1c25fb785317de9b8432f8f
+    react: ^16.0.0 || ^17.0.0 || 18.0.0
+  checksum: 95624845e6499ca78fa13eadd3305af2806668c4df3731695fbe504a256bfbf31eaed2d254311c9e4edb01ad02f462d4e159e11cf355afcaf46f912fe16eb906
   languageName: node
   linkType: hard
 

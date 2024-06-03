@@ -21,8 +21,9 @@ jobs:
       with:
         node-version: '18'
         cache: 'yarn'
-    - name: Install dependencies
+    - name: Use Yarn version from package.json
       run: yarn set version berry
+    - name: Install dependencies
       run: yarn install
     - name: Build & Test
       run: "yarn build   \npytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests\n"

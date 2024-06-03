@@ -14,8 +14,8 @@ jobs:
         python-version: '3.12' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64'
         cache: 'pip' # caching pip dependencies
+    - uses: actions/checkout@v4
     - run: pip install -r requirements.txt
-    - uses: actions/checkout@v3
     - uses: browser-actions/setup-geckodriver@latest
     - uses: c-hive/gha-yarn-cache@v2
     - name: Install dependencies

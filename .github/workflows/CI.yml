@@ -27,13 +27,12 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'yarn'
 
-    - name: Use Yarn version from package.json
-      run: yarn set version berry
+    - name: Use Corepack for package management
+      run: npm install -g corepack
 
     - name: Install dependencies
-      run: yarn install
+      run: corepack enable
 
     - name: Build & Test
       run: |

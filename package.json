@@ -40,8 +40,7 @@
     "react-mouse-particles": "^1.1.5",
     "react-open-weather": "^1.2.1",
     "react-stars": "^2.2.5",
-    "react-textfit": "^1.1.1",
-    "snake-game-react": "^1.0.6"
+    "react-textfit": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.0",

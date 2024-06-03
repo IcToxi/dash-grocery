@@ -9,7 +9,7 @@ import PowerModeInput from './components/particles/PowerModeInput'
 import Weather from './components/weather/Weather'
 import Textfit from './components/textfit/Textfit'
 import Clock from './components/clock/Clock'
-import Snake from './components/games/Snake'
+// import Snake from './components/games/Snake'
 import Masonry from './components/masonry/Masonry'
 // import GridLayout from './components/grid_layout/GridLayout'
 // import ResponsiveGridLayout from './components/grid_layout/ResponsiveGridLayout'
@@ -26,7 +26,7 @@ export {
     Weather,
     Textfit,
     Clock,
-    Snake,
+    // Snake,
     Masonry,
     // GridLayout,
     // ResponsiveGridLayout,

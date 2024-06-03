@@ -32,7 +32,7 @@ jobs:
       run: npm install -g corepack
 
     - name: Install dependencies
-      run: corepack enable
+      run: corepack enable && yarn
 
     - name: Build & Test
       run: |

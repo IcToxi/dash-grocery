@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: nanasess/setup-chromedriver@latest
+    - uses: nanasess/setup-chromedriver@v2
 
     - uses: actions/setup-python@v5
       with:

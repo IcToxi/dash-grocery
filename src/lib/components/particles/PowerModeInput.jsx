@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import PropTypes, {oneOfType} from 'prop-types'
+import React, { Component } from 'react'
+import PropTypes, { oneOfType } from 'prop-types'
 import PowerModeInput from 'power-mode-input'
-import {omit} from 'ramda'
-import {createRef} from 'react/cjs/react.production.min'
+import { omit } from 'ramda'
+import { createRef } from 'react'
 
 /**
  * Wrapped from [power-mode-input](https://github.com/lindelof/power-mode-input).
@@ -91,12 +91,12 @@ export default class DashPowerModeInput extends Component {
 
     inputRef = createRef()
 
-    componentDidMount () {
+    componentDidMount() {
         PowerModeInput.make(this.inputRef.current, this.props.config)
     }
 
-    render () {
-        const {class_name, value, setProps} = this.props
+    render() {
+        const { class_name, value, setProps } = this.props
 
         return (
             <>
@@ -115,7 +115,7 @@ export default class DashPowerModeInput extends Component {
                          * app server if a callback uses the modified prop as
                          * Input or State.
                          */
-                        e => setProps({value: e.target.value})
+                        e => setProps({ value: e.target.value })
                     }
                 />
             </>

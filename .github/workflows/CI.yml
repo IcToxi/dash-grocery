@@ -1,33 +1,32 @@
 name: CI
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
-    build:
-        name: Build Test
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/setup-python@v3
-              with:
-                  python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-                  architecture: 'x64'
-            - uses: actions/checkout@v3
-            - uses: logikal-code/pip-install@v1.0.0
-            - uses: browser-actions/setup-geckodriver@latest
-            - uses: c-hive/gha-yarn-cache@v2
-            - name: Install dependencies
-              run: yarn install
-            - name: Build & Test
-              run: |
-                  yarn build   
-                  pytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
-            - name: Upload Results
-              uses: actions/upload-artifact@v3.1.0
-              with:
-                  path: junit/test-results-${{ matrix.python-version }}.xml
-              if: ${{ always() }}
+  build:
+    name: Build Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64'
+        cache: 'pip' # caching pip dependencies
+    - run: pip install -r requirements.txt
+    - uses: actions/checkout@v3
+    - uses: browser-actions/setup-geckodriver@latest
+    - uses: c-hive/gha-yarn-cache@v2
+    - name: Install dependencies
+      run: yarn install
+    - name: Build & Test
+      run: "yarn build   \npytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests\n"
+    - name: Upload Results
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: junit/test-results-${{ matrix.python-version }}.xml
+      if: ${{ always() }}
 
-            - name: Upload to Codecov
-              uses: codecov/codecov-action@v3.1.0
+    - name: Upload to Codecov
+      uses: codecov/codecov-action@v3.1.0

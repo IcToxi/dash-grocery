@@ -1,32 +1,45 @@
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   build:
     name: Build Test
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
+
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.12' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        python-version: '3.12'
         architecture: 'x64'
-        cache: 'pip' # caching pip dependencies
+        cache: 'pip'
+
     - run: pip install -r requirements.txt
+
     - uses: browser-actions/setup-geckodriver@latest
+
     - uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'yarn'
+
     - name: Use Yarn version from package.json
       run: yarn set version berry
+
     - name: Install dependencies
       run: yarn install
+
     - name: Build & Test
-      run: "yarn build   \npytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests\n"
+      run: |
+        yarn build
+        pytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+
     - name: Upload Results
       uses: actions/upload-artifact@v3.1.0
       with:

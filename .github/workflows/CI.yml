@@ -17,7 +17,10 @@ jobs:
         cache: 'pip' # caching pip dependencies
     - run: pip install -r requirements.txt
     - uses: browser-actions/setup-geckodriver@latest
-    - uses: c-hive/gha-yarn-cache@v2
+    - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
     - name: Install dependencies
       run: yarn install
     - name: Build & Test

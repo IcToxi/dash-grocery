@@ -18,9 +18,9 @@ jobs:
     - run: pip install -r requirements.txt
     - uses: browser-actions/setup-geckodriver@latest
     - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'yarn'
+      with:
+        node-version: '18'
+        cache: 'yarn'
     - name: Install dependencies
       run: yarn install
     - name: Build & Test

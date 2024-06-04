@@ -1,4 +1,4 @@
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 
 def pytest_setup_options():

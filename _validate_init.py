@@ -56,7 +56,6 @@ def check_file(dist, filename):
 
 for cur, _, files in os.walk(components_package):
     for f in files:
-
         if f.endswith("js"):
             # noinspection PyProtectedMember
             check_file(components_lib._js_dist, f)

@@ -43,7 +43,7 @@
     "react-textfit": "^1.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
+    "@babel/core": "^7.24.7",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/preset-env": "^7.24.6",
     "@babel/preset-react": "^7.24.6",

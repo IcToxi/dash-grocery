@@ -70,7 +70,7 @@
     "svg-loader": "^0.0.2",
     "terser-webpack-plugin": "^5.3.10",
     "url-loader": "^4.1.1",
-    "webpack": "^5.91.0",
+    "webpack": "^5.92.0",
     "webpack-cli": "^5.1.4",
     "webpack-serve": "^4.0.0"
   },

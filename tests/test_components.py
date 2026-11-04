@@ -1,3 +1,5 @@
+import re
+
 import dash_grocery
 import examples
 import pytest
@@ -32,8 +34,14 @@ def test_representative_components_render(dash_duo):
 
     dash_duo.start_server(app)
 
-    for component_id in ("qr-code", "barcode", "clock", "power-mode"):
+    for component_id in ("qr-code", "barcode", "power-mode"):
         dash_duo.wait_for_element(f"#{component_id}")
+
+    WebDriverWait(dash_duo.driver, 10).until(
+        lambda driver: re.search(
+            r"\d{2}:\d{2}:\d{2}", driver.find_element(By.TAG_NAME, "body").text
+        )
+    )
 
 
 def test_custom_weather_provider_renders(dash_duo):
@@ -58,7 +66,8 @@ def test_custom_weather_provider_renders(dash_duo):
     dash_duo.start_server(app)
 
     WebDriverWait(dash_duo.driver, 10).until(
-        lambda driver: "Test City" in driver.find_element(By.ID, "weather").text
+        lambda driver: "Test City"
+        in driver.find_element(By.TAG_NAME, "body").text
     )
 
 

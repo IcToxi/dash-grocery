@@ -1,102 +1,110 @@
-
-
-
-
-
-
-<table style="margin: auto; table-layout: fixed;">
-  <tr>
-    <td width="45%">
-      <a href="https://dash.plotly.com/">
-        <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg?sanitize=true">
-      </a>
-    </td>
-    <td align="center">
-      <span>➕➖✖➗</span>
-    </td>
-    <td width="45%">
-      <a href="https://github.com/IcToxi/dash-grocery">
-        <img src='https://raw.githubusercontent.com/IcToxi/dash-grocery/main/logo.png' />
-      </a>
-    </td>
-  </tr>
-</table>
-
-<p align="center">
-	<a href="https://pypi.org/project/dash-grocery/">
-		<img alt="Language grade: Python" src="https://img.shields.io/pypi/v/dash-grocery" />
-	</a>
-	<a href="https://pepy.tech/project/dash-grocery/">
-		<img src="https://pepy.tech/badge/dash-grocery" />
-	</a>  
-	<a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/alerts/">
-		<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
-	</a>
-	<a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/context:javascript">
-		<img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
-	</a>
-	<a href="https://lgtm.com/projects/g/IcToxi/dash-grocery/context:python">
-		<img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/IcToxi/dash-grocery.svg?logo=lgtm&logoWidth=18" />
-	</a>
-	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml">
-		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/codeql-analysis.yml/badge.svg" />
-	</a>
-	<a href="https://github.com/IcToxi/dash-grocery/">
-		<img src="https://img.shields.io/snyk/vulnerabilities/github/IcToxi/dash-grocery" />
-	</a>
-	<a href="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml">
-		<img src="https://github.com/IcToxi/dash-grocery/actions/workflows/CI.yml/badge.svg" />
-	</a>
-	<a href="https://app.codecov.io/gh/IcToxi/dash-grocery">
-		<img src="https://img.shields.io/codecov/c/github/IcToxi/dash-grocery?logo=codecov" />
-	</a>	
-	<a href="https://github.com/IcToxi/dash-grocery/blob/main/LICENSE">
-		<img src="https://img.shields.io/github/license/IcToxi/dash-grocery" />
-	</a>
-	<a href="https://github.com/IcToxi/dash-grocery/pulls">
-		<img src="https://img.shields.io/badge/PRs-welcome-seagreen" />
-	</a>
-</p>
-
 # Dash Grocery
 
-Dash Grocery is a Dash component library. The purpose of this package is to collect interesting and useful React projects to wrap. I'm excited to have the first release, PRs are welcome!
+Dash Grocery is a collection of Dash components that wrap useful React
+libraries.
 
-# Quickstart
+## Install
+
+```bash
+pip install dash-grocery
+```
+
+Dash Grocery requires Dash 4.5.0 or later.
+
+## Quickstart
 
 ```python
-import dash_grocery
 from dash import Dash, html
+import dash_grocery
 
 app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        dash_grocery.Textfit(
-            dash_grocery.Clock(format="dddd, MMMM Mo, YY, HH:mm:ss", ticking=True),
-            max=400,
-            mode="single",
-        )
+        dash_grocery.Clock(
+            format="dddd, MMMM Do, YYYY, HH:mm:ss",
+            ticking=True,
+        ),
+        dash_grocery.Barcode(value="dash-grocery", format="CODE128"),
+        dash_grocery.QRCodeSVG(value="https://github.com/IcToxi/dash-grocery"),
     ]
 )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-# Contributing
-1. Clone the project locally.
+## Components
+
+| Component | Wraps |
+| --- | --- |
+| `Barcode` | [react-barcode](https://github.com/kciter/react-barcode) |
+| `Clock` | [react-live-clock](https://github.com/pvoznyuk/react-live-clock) |
+| `LazyLoad` | [react-lazyload](https://github.com/twobin/react-lazyload) |
+| `Masonry` | [react-masonry-component](https://github.com/eiriklv/react-masonry-component) |
+| `MouseParticles` | [react-mouse-particles](https://github.com/lindelof/react-mouse-particles) |
+| `ParticlesBg` | [particles-bg](https://github.com/lindelof/particles) |
+| `PowerModeInput` | [power-mode-input](https://github.com/lindelof/power-mode-input) |
+| `QRCodeCanvas`, `QRCodeSVG` | [qrcode.react](https://github.com/zpao/qrcode.react) |
+| `Stars` | [react-stars](https://github.com/n49/react-stars) |
+| `Textfit` | [react-textfit](https://github.com/malte-wessel/react-textfit) |
+| `Weather` | [react-open-weather](https://github.com/farahat80/react-open-weather) |
+
+Components accept their documented React properties as Dash properties. Use
+`id` to reference a component in callbacks; interactive components such as
+`Stars` and `PowerModeInput` expose their current value as a Dash property.
+See the [examples](./examples/) for usage, and each component's `propTypes`
+in [`src/lib/components`](./src/lib/components/) for supported properties.
+
+`Weather` requires an API key from the selected weather provider. A key used in
+a browser is visible to users; restrict it with the provider and set usage
+limits. To use your own data, set `option="custom"` and pass `customData` in
+the format returned by the selected provider. A custom JavaScript `func`, when
+used outside Dash's JSON-based Python interface, receives the component props
+and returns `{data, isLoading, errorMessage}`.
+
+## Run an example
+
+After installing the package, run an example from the repository root:
+
 ```bash
-gh repo clone IcToxi/dash-grocery
+python -m examples.barcode_usage
 ```
-2. Install dependencies.
+
+## Development
+
+Install the JavaScript and Python development dependencies, then build the
+JavaScript bundle and generated Dash components. The project is tested with
+Python 3.12 and 3.15, Node.js 22, and Dash's experimental React 19.2.4 runtime:
+
 ```bash
-yarn
+YARN_NODE_LINKER=node-modules yarn
+python -m pip install -r requirements.txt
+YARN_NODE_LINKER=node-modules yarn lint
+YARN_NODE_LINKER=node-modules yarn build
+pytest tests
 ```
-3. Create your component under `./src/lib/components` and edit the `index.js`.
-4. Create a branch and raise a PR, it would be nice to have a detailed description.
-   
-# TODO
-1. Update [documentation](https://dash-grocery.gitbook.io/docs/).
-2. More interesting components.
+
+Run `YARN_NODE_LINKER=node-modules yarn start` to rebuild the development
+bundle whenever a source file changes.
+
+To contribute a component, add its React wrapper under
+`src/lib/components/`, export it from `src/lib/index.js`, and add an example
+under `examples/`. `yarn build:py_and_r` also generates R wrappers and requires
+an author email in `package.json`.
+
+## Publishing to PyPI
+
+This repository publishes distributions through GitHub Actions Trusted
+Publishing; no PyPI API token is needed. Before the first release, add a
+publisher under **PyPI account settings → Publishing** with:
+
+- PyPI project: `dash-grocery`
+- Owner: `IcToxi`
+- Repository: `dash-grocery`
+- Workflow: `publish-to-pypi.yml`
+- Environment: `pypi`
+
+For each release, update the version in `package.json`, then push a matching
+tag such as `v0.0.8`. The publishing workflow builds and tests the package
+before uploading it to PyPI.

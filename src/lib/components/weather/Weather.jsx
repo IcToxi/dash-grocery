@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactWeather, {
     useOpenWeather,
     useWeatherBit,
@@ -6,46 +7,101 @@ import ReactWeather, {
 import PropTypes from 'prop-types'
 import {omit, pick} from 'ramda'
 
+const WeatherDisplay = ({props, weather}) => (
+    <ReactWeather
+        {...omit(
+            [
+                'api_key',
+                'lat',
+                'lon',
+                'unit',
+                'class_name',
+                'option',
+                'customData',
+                'func',
+            ],
+            props
+        )}
+        className={props.class_name}
+        data={weather.data}
+        isLoading={weather.isLoading}
+        errorMessage={weather.errorMessage}
+    />
+)
+
+WeatherDisplay.propTypes = {
+    props: PropTypes.shape({
+        class_name: PropTypes.string,
+    }).isRequired,
+    weather: PropTypes.shape({
+        data: PropTypes.object,
+        isLoading: PropTypes.bool,
+        errorMessage: PropTypes.string,
+    }).isRequired,
+}
+
+const OpenWeather = props => {
+    const weather = useOpenWeather({
+        key: props.api_key,
+        ...pick(['lat', 'lon', 'lang', 'unit'], props),
+    })
+
+    return <WeatherDisplay props={props} weather={weather} />
+}
+
+OpenWeather.propTypes = {api_key: PropTypes.string}
+
+const WeatherBit = props => {
+    const weather = useWeatherBit({
+        key: props.api_key,
+        ...pick(['lat', 'lon', 'lang', 'unit'], props),
+    })
+
+    return <WeatherDisplay props={props} weather={weather} />
+}
+
+WeatherBit.propTypes = {api_key: PropTypes.string}
+
+const VisualCrossing = props => {
+    const weather = useVisualCrossing({
+        key: props.api_key,
+        ...pick(['lat', 'lon', 'lang', 'unit'], props),
+    })
+
+    return <WeatherDisplay props={props} weather={weather} />
+}
+
+VisualCrossing.propTypes = {api_key: PropTypes.string}
+
+const CustomWeather = props => {
+    const weather = props.func
+        ? props.func(props)
+        : {data: props.customData, isLoading: false, errorMessage: null}
+
+    return <WeatherDisplay props={props} weather={weather} />
+}
+
+CustomWeather.propTypes = {
+    func: PropTypes.func,
+    customData: PropTypes.object,
+}
+
 /**
- * Wrapped from [react-open-weather](https://github.com/farahat80/react-open-weather).
- *
+ * Dash component wrapping react-open-weather.
  */
 const DashWeather = props => {
-    const services = {
-        OpenWeather: useOpenWeather,
-        WeatherBit: useWeatherBit,
-        VisualCrossing: useVisualCrossing,
+    switch (props.option) {
+        case 'OpenWeather':
+            return <OpenWeather {...props} />
+        case 'WeatherBit':
+            return <WeatherBit {...props} />
+        case 'VisualCrossing':
+            return <VisualCrossing {...props} />
+        case 'custom':
+            return <CustomWeather {...props} />
+        default:
+            throw new Error(`Unsupported weather provider: ${props.option}`)
     }
-
-    const {data, isLoading, errorMessage} =
-        props.option === 'custom'
-            ? props.func(...props)
-            : services[props.option]({
-                  key: props.api_key,
-                  ...pick(['lat', 'lon', 'lang', 'unit'], props),
-              })
-
-    return (
-        <ReactWeather
-            {...omit(
-                [
-                    'api_key',
-                    'lat',
-                    'lon',
-                    'unit',
-                    'class_name',
-                    'option',
-                    'customData',
-                    'func',
-                ],
-                props
-            )}
-            className={props.class_name}
-            data={data}
-            isLoading={isLoading}
-            errorMessage={errorMessage}
-        />
-    )
 }
 
 DashWeather.defaultProps = {
@@ -76,14 +132,8 @@ DashWeather.defaultProps = {
         forecastRangeColor: '#777',
         forecastIconColor: '#4BC4F7',
     },
-    func: (...props) => ({
-        data: props.customData,
-        isLoading: null,
-        errorMessage: null,
-    }),
 }
 
-// values are (metric, standard, imperial)
 DashWeather.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks.
@@ -96,38 +146,37 @@ DashWeather.propTypes = {
     class_name: PropTypes.string,
 
     /**
-     * your api key from the openweather, weatherbit or visual crossing websites
+     * Your API key from the selected weather provider.
      */
-    api_key: PropTypes.string.isRequired,
+    api_key: PropTypes.string,
 
     /**
-     * latitude of the location
+     * Latitude of the location.
      */
     lat: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
-     * longitude of the location
+     * Longitude of the location.
      */
     lon: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
-     * the language to show "humidity" and "wind speed", feel free to open a PR to lang.js to add more languages
-     * "en", "de", "es"
+     * Language used for labels.
      */
     lang: PropTypes.string,
 
     /**
-     * the unit will be passed to the openweather, weatherbit or visualcrossing "units" property, please check their documentation for more info
+     * Units passed to the selected weather provider.
      */
     unit: PropTypes.string,
 
     /**
-     * The name of the location or city to show in the component
+     * The name of the location or city to show in the component.
      */
     locationLabel: PropTypes.string,
 
     /**
-     * the labels to be used for temprature and windspeed
+     * Labels used for temperature and wind speed.
      */
     unitsLabels: PropTypes.shape({
         temperature: PropTypes.string,
@@ -135,17 +184,22 @@ DashWeather.propTypes = {
     }),
 
     /**
-     * whether or not to show the forecast bottom part of the component
+     * Whether to show the forecast section.
      */
     showForecast: PropTypes.bool,
 
     /**
-     * useOpenWeather, useWeatherBit and useVisualCrossing options
+     * Weather provider: OpenWeather, WeatherBit, VisualCrossing, or custom.
      */
-    option: PropTypes.string,
+    option: PropTypes.oneOf([
+        'OpenWeather',
+        'WeatherBit',
+        'VisualCrossing',
+        'custom',
+    ]),
 
     /**
-     * Custom styling
+     * Custom styling.
      */
     theme: PropTypes.shape({
         fontFamily: PropTypes.string,
@@ -168,12 +222,13 @@ DashWeather.propTypes = {
     }),
 
     /**
-     * Custom weather data. Refer to the format of the data obtained through the API.
+     * Custom weather data. Refer to the provider data format.
      */
     customData: PropTypes.object,
 
     /**
-     * For custom API or other. (experimental)
+     * Optional custom provider function. Receives the component props and
+     * returns {data, isLoading, errorMessage}.
      */
     func: PropTypes.func,
 }

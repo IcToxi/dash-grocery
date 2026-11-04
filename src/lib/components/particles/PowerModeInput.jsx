@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes, { oneOfType } from 'prop-types'
+import React, {Component, createRef} from 'react'
+import PropTypes, {oneOfType} from 'prop-types'
 import PowerModeInput from 'power-mode-input'
-import { omit } from 'ramda'
-import { createRef } from 'react'
+import {omit} from 'ramda'
 
 /**
  * Wrapped from [power-mode-input](https://github.com/lindelof/power-mode-input).
@@ -11,6 +10,7 @@ import { createRef } from 'react'
 export default class DashPowerModeInput extends Component {
     static defaultProps = {
         type: 'text',
+        value: '',
         maxLength: 128,
         config: {
             height: 5,
@@ -90,35 +90,46 @@ export default class DashPowerModeInput extends Component {
     }
 
     inputRef = createRef()
+    powerModeInputInitialized = false
 
     componentDidMount() {
         PowerModeInput.make(this.inputRef.current, this.props.config)
+        this.powerModeInputInitialized = true
+    }
+
+    componentDidUpdate(previousProps) {
+        if (previousProps.config !== this.props.config) {
+            if (this.powerModeInputInitialized) {
+                PowerModeInput.close(this.inputRef.current)
+                this.powerModeInputInitialized = false
+            }
+            PowerModeInput.make(this.inputRef.current, this.props.config)
+            this.powerModeInputInitialized = true
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.powerModeInputInitialized) {
+            PowerModeInput.close(this.inputRef.current)
+            this.powerModeInputInitialized = false
+        }
     }
 
     render() {
-        const { class_name, value, setProps } = this.props
+        const {class_name, value, setProps} = this.props
 
         return (
-            <>
-                <input
-                    {...omit(['class_name', 'value', 'config'], this.props)}
-                    className={class_name}
-                    ref={this.inputRef}
-                    value={value}
-                    onChange={
-                        /*
-                         * Send the new value to the parent component.
-                         * setProps is a prop that is automatically supplied
-                         * by dash's front-end ("dash-renderer").
-                         * In a Dash app, this will update the component's
-                         * props and send the data back to the Python Dash
-                         * app server if a callback uses the modified prop as
-                         * Input or State.
-                         */
-                        e => setProps({ value: e.target.value })
+            <input
+                {...omit(['class_name', 'value', 'config'], this.props)}
+                className={class_name}
+                ref={this.inputRef}
+                value={value}
+                onChange={event => {
+                    if (setProps) {
+                        setProps({value: event.target.value})
                     }
-                />
-            </>
+                }}
+            />
         )
     }
 }

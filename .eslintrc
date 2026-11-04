@@ -1,19 +1,11 @@
 {
   "extends": ["eslint:recommended", "prettier"],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "requireConfigFile": false,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
-      "arrowFunctions": true,
-      "blockBindings": true,
-      "classes": true,
-      "defaultParams": true,
-      "destructuring": true,
-      "forOf": true,
-      "generators": true,
-      "modules": true,
-      "templateStrings": true,
       "jsx": true
     }
   },
@@ -26,6 +18,11 @@
   },
   "globals": {
     "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "plugins": [
     "react",
@@ -114,7 +111,7 @@
     }],
     "no-magic-numbers": ["error", {
       "ignoreArrayIndexes": true,
-        "ignore": [-1, 0, 1, 2, 3, 100, 10, 0.5]
+        "ignore": [-1, 0, 1, 2, 3, 100, 10, 0.5, 360, 0.75, 0.1]
     }],
     "no-underscore-dangle": ["off"]
   }

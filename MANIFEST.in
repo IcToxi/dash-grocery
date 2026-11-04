@@ -1,5 +1,6 @@
 include dash_grocery/dash_grocery.min.js
 include dash_grocery/dash_grocery.min.js.map
+include dash_grocery/dash_grocery.min.js.LICENSE.txt
 include dash_grocery/async-*.js
 include dash_grocery/async-*.js.map
 include dash_grocery/*-shared.js

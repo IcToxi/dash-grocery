@@ -10,13 +10,19 @@ jobs:
   build:
     name: Build Test
     runs-on: ubuntu-latest
+    env:
+      YARN_NODE_LINKER: node-modules
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.12', '3.15']
 
     steps:
     - uses: actions/checkout@v4
 
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: ${{ matrix.python-version }}
         architecture: 'x64'
         cache: 'pip'
 
@@ -26,7 +32,7 @@ jobs:
 
     - uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '22'
 
     - name: Use Corepack for package management
       run: npm install -g corepack
@@ -35,9 +41,13 @@ jobs:
       run: corepack enable && yarn
 
     - name: Build & Test
+      env:
+        REACT_VERSION: '19.2.4'
       run: |
+        mkdir -p junit
+        yarn lint
         yarn build
-        pytest --webdriver=Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+        pytest --webdriver=Firefox --cov=dash_grocery --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
 
     - name: Upload Results
       uses: actions/upload-artifact@v4.3.3

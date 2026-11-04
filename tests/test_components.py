@@ -66,8 +66,7 @@ def test_custom_weather_provider_renders(dash_duo):
     dash_duo.start_server(app)
 
     WebDriverWait(dash_duo.driver, 10).until(
-        lambda driver: "Test City"
-        in driver.find_element(By.TAG_NAME, "body").text
+        lambda driver: "Test City" in driver.find_element(By.TAG_NAME, "body").text
     )
 
 

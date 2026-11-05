@@ -39,18 +39,18 @@ if __name__ == "__main__":
 | Component | Wraps |
 | --- | --- |
 | `Barcode` | [react-barcode](https://github.com/kciter/react-barcode) |
-| `Clock` | [react-live-clock](https://github.com/pvoznyuk/react-live-clock) |
+| `Clock` | Local implementation (no third-party library) |
 | `GridLayout` | [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) |
-| `LazyLoad` | [react-lazyload](https://github.com/twobin/react-lazyload) |
-| `Masonry` | [react-masonry-component](https://github.com/eiriklv/react-masonry-component) |
-| `MouseParticles` | [react-mouse-particles](https://github.com/lindelof/react-mouse-particles) |
+| `LazyLoad` | Local implementation (no third-party library) |
+| `Masonry` | Local implementation (no third-party library) |
+| `MouseParticles` | Local implementation (no third-party library) |
 | `Particles` | [tsParticles](https://github.com/tsparticles/tsparticles) (slim bundle) |
-| `ParticlesBg` | [particles-bg](https://github.com/lindelof/particles) |
-| `PowerModeInput` | [power-mode-input](https://github.com/lindelof/power-mode-input) |
+| `ParticlesBg` | Local implementation (no third-party library) |
+| `PowerModeInput` | Local implementation (no third-party library) |
 | `QRCodeCanvas`, `QRCodeSVG` | [qrcode.react](https://github.com/zpao/qrcode.react) |
 | `Snake` | Built-in; keyboard and on-screen controls |
 | `Stars` | Local implementation (replaces unmaintained react-stars) |
-| `Textfit` | [react-textfit](https://github.com/malte-wessel/react-textfit) |
+| `Textfit` | Local implementation (no third-party library) |
 | `Weather` | [react-open-weather](https://github.com/farahat80/react-open-weather) |
 
 Components accept their documented React properties as Dash properties. Use
@@ -122,9 +122,10 @@ The repository maintains itself:
 - **Dependabot** opens weekly grouped updates; passing minor/patch updates are
   merged automatically (`dependabot-automerge.yml`). Major updates are left for
   review.
-- **Auto release** (`auto-release.yml`) runs weekly. If `main` has dependency or
-  source changes since the last tag and CI passed, it bumps the patch version,
-  tags, creates the GitHub release and publishes to PyPI.
+- **Auto release** (`auto-release.yml`) is manual-only (Actions tab, "Run
+  workflow"). It bumps the patch version if `main` has dependency or source
+  changes since the last tag and CI passed, then tags, creates the GitHub
+  release and publishes to PyPI. Re-add a `schedule` trigger to run it weekly.
 
 ## Not included
 

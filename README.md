@@ -47,7 +47,7 @@ if __name__ == "__main__":
 | `PowerModeInput` | [power-mode-input](https://github.com/lindelof/power-mode-input) |
 | `QRCodeCanvas`, `QRCodeSVG` | [qrcode.react](https://github.com/zpao/qrcode.react) |
 | `Snake` | Built-in; keyboard and on-screen controls |
-| `Stars` | [react-stars](https://github.com/n49/react-stars) |
+| `Stars` | Local implementation (replaces unmaintained react-stars) |
 | `Textfit` | [react-textfit](https://github.com/malte-wessel/react-textfit) |
 | `Weather` | [react-open-weather](https://github.com/farahat80/react-open-weather) |
 

@@ -4855,7 +4855,6 @@ __metadata:
     react-moment: "npm:^1.1.3"
     react-mouse-particles: "npm:^1.1.5"
     react-open-weather: "npm:^1.3.9"
-    react-stars: "npm:^2.2.5"
     react-textfit: "npm:^1.1.1"
     style-loader: "npm:^4.0.0"
     styled-jsx: "npm:^5.1.6"
@@ -8464,13 +8463,6 @@ __metadata:
   peerDependencies:
     react: ">= 16.3"
   checksum: 10c0/cfe50aa6efb79e0aa09bd681a5beab2fcd1186737c4952eb4c3974ed9395d5d263ccd1130961d06b8f5e24c8f544dd2967b5c740ce68719962d1771de7bdb350
-  languageName: node
-  linkType: hard
-
-"react-stars@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "react-stars@npm:2.2.5"
-  checksum: 10c0/eda738df1bfa8b68ec2fe6620c270b1f305fa4f90a9ca5c92b088a1cd7181691227d45d74b0473974d313805a197fdc57114451efeb4d98cf9ba1da9b75cb59e
   languageName: node
   linkType: hard
 

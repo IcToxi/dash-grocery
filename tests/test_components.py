@@ -69,6 +69,22 @@ def test_snake_controls_and_styles_are_scoped(dash_duo):
     dash_duo.find_element("#snake-board").send_keys(Keys.ARROW_DOWN)
 
 
+def test_stars_click_updates_dash_value(dash_duo):
+    app = Dash(__name__)
+    app.layout = html.Div(
+        [dash_grocery.Stars(id="stars", value=1, half=False), html.Div(id="out")]
+    )
+
+    @app.callback(Output("out", "children"), Input("stars", "value"))
+    def show(value):
+        return f"rating={value}"
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_text_to_equal("#out", "rating=1")
+    dash_duo.find_elements("#stars span[data-index]")[3].click()
+    dash_duo.wait_for_text_to_equal("#out", "rating=4")
+
+
 def test_custom_weather_provider_renders(dash_duo):
     app = Dash(__name__)
     app.layout = dash_grocery.Weather(

@@ -22,16 +22,16 @@ jobs:
       YARN_NODE_LINKER: node-modules
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.15"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
 
@@ -71,7 +71,7 @@ jobs:
           python -m twine check dist/*
 
       - name: Store distribution packages
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: python-package-distributions
           path: dist/
@@ -88,7 +88,7 @@ jobs:
 
     steps:
       - name: Download distribution packages
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: python-package-distributions
           path: dist/

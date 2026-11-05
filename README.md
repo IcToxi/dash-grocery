@@ -119,9 +119,9 @@ The repository maintains itself:
 
 - **CI** runs on every push and pull request, and weekly to catch upstream
   breakage (Dash, React, browsers).
-- **Dependabot** opens weekly grouped updates; passing minor/patch updates are
-  merged automatically (`dependabot-automerge.yml`). Major updates are left for
-  review.
+- **Dependabot** is limited to security updates; passing minor/patch ones are
+  merged automatically (`dependabot-automerge.yml`). Releases are cut by hand
+  (or via `auto-release.yml`), and only when needed for security fixes.
 - **Auto release** (`auto-release.yml`) is manual-only (Actions tab, "Run
   workflow"). It bumps the patch version if `main` has dependency or source
   changes since the last tag and CI passed, then tags, creates the GitHub

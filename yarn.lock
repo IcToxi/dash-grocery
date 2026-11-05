@@ -3568,7 +3568,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-grid-layout: "npm:^1.4.4"
     react-lazyload: "npm:^3.2.1"
-    react-live-clock: "npm:^6.1.22"
+    react-live-clock: "npm:^6.1.25"
     react-masonry-component: "npm:^6.3.0"
     react-moment: "npm:^1.1.3"
     react-mouse-particles: "npm:^1.1.5"
@@ -6857,16 +6857,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-live-clock@npm:^6.1.22":
-  version: 6.1.22
-  resolution: "react-live-clock@npm:6.1.22"
+"react-live-clock@npm:^6.1.25":
+  version: 6.1.25
+  resolution: "react-live-clock@npm:6.1.25"
   dependencies:
     moment: "npm:^2.29.1"
     moment-timezone: "npm:^0.5.33"
   peerDependencies:
     react: ^16.14.0 || ^17 || ^18
     react-moment: 1.1.3
-  checksum: 10c0/d4c0933a803a29bf2bb863d079b49ab669e0db387b6aaee8ff54e287498bd5d426811aad0a3bff19337d575bb9c66abdb898d685e3294680ad388c5b5d69fa41
+  checksum: 10c0/9d2f1625ab94546257238f5785a5420e6e50cbb2db3bf38bbe05d1e4308fead47ecbf442b5fc02fa38c2b94cc3cadfa41d304931c8bb98aa67bb599f701c9cf9
   languageName: node
   linkType: hard
 

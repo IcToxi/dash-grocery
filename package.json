@@ -1,6 +1,6 @@
 {
   "name": "dash_grocery",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Dash components wrapping useful React libraries.",
   "repository": {
     "type": "git",

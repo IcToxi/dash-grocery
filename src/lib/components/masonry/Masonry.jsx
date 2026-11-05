@@ -1,166 +1,297 @@
-import React, {Component} from 'react'
+import React, {useCallback, useEffect, useLayoutEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
-import Masonry from 'react-masonry-component'
-import {omit} from 'ramda'
+
+const toMs = value => {
+    if (typeof value === 'number') {
+        return `${value}ms`
+    }
+    return value || '0.4s'
+}
 
 /**
- * Wrapped from [react-masonry-component](https://github.com/eiriklv/react-masonry-component).
+ * A Masonry-style layout that places each child in the shortest column.
  */
-export default class DashMasonry extends Component {
-    static defaultProps = {}
+const DashMasonry = ({
+    id,
+    class_name,
+    children,
+    elementType = 'div',
+    options = {},
+    style,
+}) => {
+    const containerRef = useRef(null)
+    const itemRefs = useRef([])
+    const frame = useRef(0)
+    const optionsRef = useRef(options)
+    optionsRef.current = options
 
-    static propTypes = {
-        /**
-         * The ID used to identify this component in Dash callbacks.
-         */
-        id: PropTypes.string,
+    const layout = useCallback(() => {
+        const container = containerRef.current
+        const items = itemRefs.current.filter(Boolean)
+        if (!container || !items.length) {
+            return
+        }
+        const opts = optionsRef.current || {}
+        const gutter = opts.gutter || 0
+        const originLeft = opts.originLeft !== false
+        const originTop = opts.originTop !== false
+        const containerWidth = container.parentElement
+            ? container.parentElement.clientWidth
+            : container.clientWidth
 
-        /**
-         * Often used with CSS to style elements with common properties
-         */
-        class_name: PropTypes.string,
+        let columnWidth = opts.columnWidth
+        if (typeof columnWidth === 'string') {
+            const sizer = container.querySelector(columnWidth)
+            columnWidth = sizer ? sizer.offsetWidth : null
+        }
+        if (!columnWidth) {
+            columnWidth = items[0].offsetWidth || 1
+        }
 
-        /**
-         * children
-         */
-        children: PropTypes.node,
+        const step = columnWidth + gutter
+        const cols = Math.max(1, Math.floor((containerWidth + gutter) / step))
+        const heights = new Array(cols).fill(0)
+        const placed = []
+        let cursor = 0
 
-        /**
-         * default 'div'
-         */
-        elementType: PropTypes.string,
+        items.forEach(item => {
+            const span = Math.min(
+                cols,
+                Math.max(1, Math.round((item.offsetWidth + gutter) / step))
+            )
+            const maxColumn = cols - span + 1
+            let column = 0
+            if (opts.horizontalOrder) {
+                column = cursor % maxColumn
+                cursor += span
+            } else {
+                let best = Infinity
+                for (let c = 0; c < maxColumn; c++) {
+                    const top = Math.max(...heights.slice(c, c + span))
+                    if (top < best) {
+                        best = top
+                        column = c
+                    }
+                }
+            }
+            const top = Math.max(...heights.slice(column, column + span))
+            const bottom = top + item.offsetHeight + gutter
+            for (let c = column; c < column + span; c++) {
+                heights[c] = bottom
+            }
+            placed.push({item, column, top, span})
+        })
 
-        /**
-         * masonry options
-         */
-        options: PropTypes.shape({
-            /**
-             * Specifies which child elements will be used as item elements in the layout.
-             */
-            itemSelector: PropTypes.string,
-            /**
-             * Aligns items to a horizontal grid.
-             */
-            columnWidth: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string,
-            ]),
-            /**
-             * Adds horizontal space between item elements.
-             */
-            gutter: PropTypes.number,
-            /**
-             * Lays out items to (mostly) maintain horizontal left-to-right order.
-             */
-            horizontalOrder: PropTypes.bool,
-            /**
-             * Sets item positions in percent values, rather than pixel values.
-             * percentPosition: true works well with percent-width items,
-             * as items will not transition their position on resize.
-             */
-            percentPosition: PropTypes.bool,
-            /**
-             * Specifies which elements are stamped within the layout.
-             * Masonry will layout items below stamped elements.
-             */
-            stamp: PropTypes.string,
-            /**
-             * Sets the width of the container to fit the available number of columns,
-             * based the size of container's parent element.
-             * When enabled, you can center the container with CSS.
-             */
-            fitWidth: PropTypes.bool,
-            /**
-             * Controls the horizontal flow of the layout.
-             * By default, item elements start positioning at the left,
-             * with originLeft: true. Set originLeft: false for right-to-left layouts.
-             */
-            originLeft: PropTypes.bool,
-            /**
-             * Controls the vertical flow of the layout.
-             * By default, item elements start positioning at the top,
-             * with originTop: true.
-             * Set originTop: false for bottom-up layouts.
-             */
-            originTop: PropTypes.bool,
-            /**
-             * CSS styles that are applied to the container element.
-             */
-            containerStyle: PropTypes.object,
-            /**
-             * Duration of the transition when items change position or appearance,
-             * set in a CSS time format. Default: transitionDuration: '0.4s'
-             */
-            transitionDuration: PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string,
-            ]),
-            /**
-             * Staggers item transitions, so items transition incrementally after one another.
-             * Set as a CSS time format, '0.03s', or as a number in milliseconds, 30.
-             */
-            stagger: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-            /**
-             * Adjusts sizes and positions when window is resized. Enabled by default resize: true.
-             */
-            resize: PropTypes.bool,
-            /**
-             * Enables layout on initialization. Enabled by default initLayout: true.
-             */
-            initLayout: PropTypes.bool,
-        }),
+        const total = Math.max(...heights) - gutter
+        const usedWidth = cols * step - gutter
 
-        /**
-         * default false
-         */
-        disableImagesLoaded: PropTypes.bool,
+        if (opts.fitWidth) {
+            container.style.width = `${usedWidth}px`
+            container.style.marginLeft = 'auto'
+            container.style.marginRight = 'auto'
+        }
+        container.style.height = `${Math.max(total, 0)}px`
 
-        /**
-         * default false and works only if disableImagesLoaded is false
-         */
-        updateOnEachImageLoad: PropTypes.bool,
+        placed.forEach(({item, column, top, span}) => {
+            const x = column * step
+            const y = originTop ? top : total - top - item.offsetHeight
+            if (originLeft) {
+                item.style.left = opts.percentPosition
+                    ? `${(x / containerWidth) * 100}%`
+                    : `${x}px`
+                item.style.right = 'auto'
+            } else {
+                const right = usedWidth - x - (span * step - gutter)
+                item.style.right = `${Math.max(right, 0)}px`
+                item.style.left = 'auto'
+            }
+            item.style.top = `${y}px`
+            item.style.transition = `left ${toMs(opts.transitionDuration)}, top ${toMs(opts.transitionDuration)}`
+            item.style.visibility = 'visible'
+        })
+    }, [])
 
-        /**
-         * default {}
-         */
-        imagesLoadedOptions: PropTypes.object,
+    const schedule = useCallback(() => {
+        cancelAnimationFrame(frame.current)
+        frame.current = requestAnimationFrame(layout)
+    }, [layout])
 
-        /**
-         * onImagesLoaded
-         */
-        onImagesLoaded: PropTypes.func,
+    useLayoutEffect(() => {
+        layout()
+    })
 
-        /**
-         * enableResizableChildren
-         */
-        enableResizableChildren: PropTypes.bool,
+    useEffect(() => {
+        const container = containerRef.current
+        if (!container || typeof ResizeObserver === 'undefined') {
+            return undefined
+        }
+        const observer = new ResizeObserver(() => {
+            schedule()
+        })
+        observer.observe(container.parentElement || container)
+        itemRefs.current.filter(Boolean).forEach(item => observer.observe(item))
+        container.addEventListener('load', schedule, true)
+        return () => {
+            cancelAnimationFrame(frame.current)
+            container.removeEventListener('load', schedule, true)
+            observer.disconnect()
+        }
+    }, [schedule, React.Children.count(children)])
 
-        /**
-         * func onLayoutComplete
-         */
-        onLayoutComplete: PropTypes.func,
+    const Tag = elementType
+    const columnWidth =
+        typeof options.columnWidth === 'number' ? options.columnWidth : undefined
 
-        /**
-         * func onRemoveComplete
-         */
-        onRemoveComplete: PropTypes.func,
-
-        /**
-         * style
-         */
-        style: PropTypes.object,
-    }
-
-    render () {
-        const {class_name, children} = this.props
-
-        return (
-            <Masonry
-                {...omit(['children', 'class_name'], this.props)}
-                className={class_name}
-            >
-                {children}
-            </Masonry>
-        )
-    }
+    return (
+        <Tag
+            id={id}
+            className={class_name}
+            ref={containerRef}
+            style={{position: 'relative', ...(options.containerStyle || {}), ...style}}
+        >
+            {React.Children.toArray(children).map((child, index) => (
+                <div
+                    key={child.key === null ? index : child.key}
+                    ref={node => {
+                        itemRefs.current[index] = node
+                    }}
+                    style={{
+                        position: 'absolute',
+                        width: columnWidth,
+                        visibility: 'hidden',
+                    }}
+                >
+                    {child}
+                </div>
+            ))}
+        </Tag>
+    )
 }
+
+DashMasonry.propTypes = {
+    /**
+     * The ID used to identify this component in Dash callbacks.
+     */
+    id: PropTypes.string,
+
+    /**
+     * Often used with CSS to style elements with common properties
+     */
+    class_name: PropTypes.string,
+
+    /**
+     * Items to lay out; every child is one masonry item.
+     */
+    children: PropTypes.node,
+
+    /**
+     * HTML tag used for the container. Default is div.
+     */
+    elementType: PropTypes.string,
+
+    /**
+     * Layout options (same names as masonry-layout).
+     */
+    options: PropTypes.shape({
+        /**
+         * Accepted for compatibility; every child is an item.
+         */
+        itemSelector: PropTypes.string,
+
+        /**
+         * Column width in px, or a CSS selector of an element whose width is used.
+         * Defaults to the width of the first item.
+         */
+        columnWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+        /**
+         * Space in px between items.
+         */
+        gutter: PropTypes.number,
+
+        /**
+         * Place items left-to-right in order instead of in the shortest column.
+         */
+        horizontalOrder: PropTypes.bool,
+
+        /**
+         * Use percentage positions so the layout is fluid.
+         */
+        percentPosition: PropTypes.bool,
+
+        /**
+         * Accepted for compatibility; has no effect.
+         */
+        stamp: PropTypes.string,
+
+        /**
+         * Size and center the container to fit the columns.
+         */
+        fitWidth: PropTypes.bool,
+
+        /**
+         * Lay out from the left (default) or the right.
+         */
+        originLeft: PropTypes.bool,
+
+        /**
+         * Lay out from the top (default) or the bottom.
+         */
+        originTop: PropTypes.bool,
+
+        /**
+         * Extra CSS styles for the container.
+         */
+        containerStyle: PropTypes.object,
+
+        /**
+         * Duration of the move transition, e.g. "0.4s" or 400 (ms).
+         */
+        transitionDuration: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+        ]),
+
+        /**
+         * Accepted for compatibility; has no effect.
+         */
+        stagger: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+        /**
+         * Accepted for compatibility; the layout always follows resizes.
+         */
+        resize: PropTypes.bool,
+
+        /**
+         * Accepted for compatibility; the layout is always initialized.
+         */
+        initLayout: PropTypes.bool,
+    }),
+
+    /**
+     * Accepted for compatibility; image loads are always tracked.
+     */
+    disableImagesLoaded: PropTypes.bool,
+
+    /**
+     * Accepted for compatibility; has no effect.
+     */
+    updateOnEachImageLoad: PropTypes.bool,
+
+    /**
+     * Accepted for compatibility; has no effect.
+     */
+    imagesLoadedOptions: PropTypes.object,
+
+    /**
+     * Accepted for compatibility; item resizes are always tracked.
+     */
+    enableResizableChildren: PropTypes.bool,
+
+    /**
+     * Inline CSS styles for the container.
+     */
+    style: PropTypes.object,
+}
+
+export default DashMasonry

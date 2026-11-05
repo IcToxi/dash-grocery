@@ -135,6 +135,123 @@ def test_custom_weather_provider_renders(dash_duo):
     )
 
 
+def test_textfit_grows_text_to_fill_container(dash_duo):
+    app = Dash(__name__)
+    app.layout = html.Div(
+        dash_grocery.Textfit(
+            html.Span("fit me", id="fit-text"),
+            id="fit",
+            mode="single",
+            max=300,
+            style={"width": "600px"},
+        )
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("#fit-text")
+    WebDriverWait(dash_duo.driver, 10).until(
+        lambda d: float(
+            d.execute_script(
+                "return parseFloat(getComputedStyle(document.getElementById('fit-text')).fontSize)"
+            )
+        )
+        > 40
+    )
+    width = dash_duo.driver.execute_script(
+        "return document.getElementById('fit-text').getBoundingClientRect().width"
+    )
+    assert width <= 600
+
+
+def test_lazy_load_defers_offscreen_content(dash_duo):
+    app = Dash(__name__)
+    app.layout = html.Div(
+        [
+            html.Div(style={"height": "3000px"}),
+            dash_grocery.LazyLoad(
+                html.Div("loaded", id="lazy-child"), id="lazy", height=100, once=True
+            ),
+            html.Div(style={"height": "1000px"}),
+        ]
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("#lazy")
+    assert not dash_duo.find_elements("#lazy-child")
+    dash_duo.driver.execute_script(
+        "document.getElementById('lazy').scrollIntoView()"
+    )
+    dash_duo.wait_for_element("#lazy-child")
+
+
+def test_masonry_places_items_in_columns(dash_duo):
+    app = Dash(__name__)
+    heights = [100, 60, 80, 40, 90, 50]
+    app.layout = html.Div(
+        dash_grocery.Masonry(
+            [
+                html.Div(
+                    id=f"m{i}",
+                    style={"height": f"{h}px", "width": "100px", "background": "#ccc"},
+                )
+                for i, h in enumerate(heights)
+            ],
+            id="masonry",
+            options={"columnWidth": 100, "gutter": 10},
+        ),
+        style={"width": "340px"},
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("#m5")
+    WebDriverWait(dash_duo.driver, 10).until(
+        lambda d: d.execute_script(
+            "return getComputedStyle(document.getElementById('m5')."
+            "parentElement).visibility"
+        )
+        == "visible"
+    )
+    lefts = dash_duo.driver.execute_script(
+        "return [0,1,2,3,4,5].map(i => document.getElementById('m'+i)."
+        "parentElement.offsetLeft)"
+    )
+    # three columns of 100px with a 10px gutter
+    assert lefts[:3] == [0, 110, 220]
+    assert set(lefts) <= {0, 110, 220}
+
+
+def test_particle_canvases_draw(dash_duo):
+    app = Dash(__name__)
+    app.layout = html.Div(
+        [
+            dash_grocery.ParticlesBg(id="bg", type="cobweb"),
+            dash_grocery.MouseParticles(id="mouse"),
+        ]
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("canvas#bg")
+
+    def has_pixels(driver):
+        return driver.execute_script(
+            "const c=document.getElementById('bg');"
+            "const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;"
+            "for(let i=3;i<d.length;i+=4){if(d[i]>0)return true}return false"
+        )
+
+    WebDriverWait(dash_duo.driver, 10).until(has_pixels)
+
+
+def test_clock_shows_time_in_timezone(dash_duo):
+    app = Dash(__name__)
+    app.layout = dash_grocery.Clock(
+        id="clock", date="2024-01-01T00:00:00Z", format="HH:mm", timezone="Asia/Tokyo"
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_text_to_equal("#clock", "09:00")
+
+
 def test_power_mode_input_updates_dash_value(dash_duo):
     app = Dash(__name__)
     app.layout = html.Div(

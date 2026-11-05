@@ -1,86 +1,138 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
-import Clock from 'react-live-clock'
-import {omit} from 'ramda'
+import moment from 'moment-timezone'
+
+const buildText = ({date, format, locale, timezone, now}) => {
+    let m = date ? moment(date) : moment(now)
+    if (timezone) {
+        m = m.tz(timezone)
+    }
+    if (locale) {
+        m = m.locale(locale)
+    }
+    return m.format(format)
+}
 
 /**
- * Wrapped from [react-live-clock](https://github.com/pvoznyuk/react-live-clock).
- *
+ * A live clock that renders the current (or a given) time using moment.js
+ * format tokens.
  */
-export default class DashClock extends Component {
-    static defaultProps = {}
+const DashClock = ({
+    id,
+    class_name,
+    children,
+    date,
+    format = 'HH:mm:ss',
+    locale,
+    timezone,
+    ticking = false,
+    blinking = false,
+    interval = 1000,
+    style,
+}) => {
+    const [now, setNow] = useState(() => Date.now())
+    const [on, setOn] = useState(true)
 
-    static propTypes = {
-        /**
-         * The ID used to identify this component in Dash callbacks.
-         */
-        id: PropTypes.string,
+    useEffect(() => {
+        if (!ticking || date) {
+            return undefined
+        }
+        const timer = setInterval(() => setNow(Date.now()), interval)
+        return () => clearInterval(timer)
+    }, [ticking, date, interval])
 
-        /**
-         * Often used with CSS to style elements with common properties
-         */
-        class_name: PropTypes.string,
+    useEffect(() => {
+        if (!blinking) {
+            return undefined
+        }
+        const timer = setInterval(() => setOn(value => !value), 500)
+        return () => clearInterval(timer)
+    }, [blinking])
 
-        /**
-         * date can be set as a children prop.
-         */
-        children: PropTypes.node,
-
-        /**
-         * Date to output, If nothing is set then it take current date.
-         */
-        date: PropTypes.oneOfType([PropTypes.string, PropTypes.date]),
-
-        /**
-         * Formatting from moment.js library.
-         */
-        format: PropTypes.string,
-
-        /**
-         * Changes the language of the component via prop
-         */
-        locale: PropTypes.string,
-
-        /**
-         * Filtering the value before the output .
-         */
-        filter: PropTypes.func,
-
-        /**
-         * If timezone is set, the date is show in this timezone.
-         * You can find the list. here, the TZ column.
-         */
-        timezone: PropTypes.string,
-
-        /**
-         * If you want the clock to be auto-updated every interval seconds.
-         */
-        ticking: PropTypes.bool,
-
-        /**
-         * If you want the clock's last colon to blink.
-         * Set it to all to make them all blink.
-         */
-        blinking: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-
-        /**
-         * Auto-updating period for the clock. 1 second is a default value.
-         */
-        interval: PropTypes.number,
-
-        /**
-         * callback function on each output update
-         */
-        onChange: PropTypes.func,
-    }
-
-    render () {
-        const {class_name, children} = this.props
-
-        return (
-            <Clock {...omit(['class_name'], this.props)} className={class_name}>
-                {children}
-            </Clock>
+    const text = buildText({date, format, locale, timezone, now})
+    let content = text
+    if (blinking && blinking !== 'all') {
+        const parts = text.split(':')
+        content = parts.flatMap((part, index) =>
+            index === 0
+                ? [part]
+                : [
+                      <span key={index} style={{opacity: on ? 1 : 0}}>
+                          :
+                      </span>,
+                      part,
+                  ]
         )
     }
+
+    return (
+        <time
+            id={id}
+            className={class_name}
+            style={{...style, opacity: blinking === 'all' && !on ? 0 : undefined}}
+            dateTime={moment(date || now).toISOString()}
+        >
+            {content}
+            {children}
+        </time>
+    )
 }
+
+DashClock.propTypes = {
+    /**
+     * The ID used to identify this component in Dash callbacks.
+     */
+    id: PropTypes.string,
+
+    /**
+     * Often used with CSS to style elements with common properties
+     */
+    class_name: PropTypes.string,
+
+    /**
+     * Inline CSS styles for the element.
+     */
+    style: PropTypes.object,
+
+    /**
+     * Appended after the formatted time.
+     */
+    children: PropTypes.node,
+
+    /**
+     * A fixed date/time to show (ISO string) instead of the current time.
+     */
+    date: PropTypes.string,
+
+    /**
+     * moment.js format string, e.g. "HH:mm:ss" or "dd, MMMM Mo, YY". Default is "HH:mm:ss".
+     */
+    format: PropTypes.string,
+
+    /**
+     * Locale code such as "en" or "zh-cn".
+     */
+    locale: PropTypes.string,
+
+    /**
+     * IANA time zone, e.g. "Asia/Shanghai".
+     */
+    timezone: PropTypes.string,
+
+    /**
+     * Update the clock every `interval` milliseconds.
+     */
+    ticking: PropTypes.bool,
+
+    /**
+     * true blinks the ":" separators; "all" blinks the entire text.
+     */
+    blinking: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+
+    /**
+     * Milliseconds between updates when ticking. Default is 1000.
+     */
+    interval: PropTypes.number,
+}
+
+export default DashClock

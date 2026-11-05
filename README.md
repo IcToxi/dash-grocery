@@ -46,6 +46,7 @@ if __name__ == "__main__":
 | `ParticlesBg` | [particles-bg](https://github.com/lindelof/particles) |
 | `PowerModeInput` | [power-mode-input](https://github.com/lindelof/power-mode-input) |
 | `QRCodeCanvas`, `QRCodeSVG` | [qrcode.react](https://github.com/zpao/qrcode.react) |
+| `Snake` | Built-in; keyboard and on-screen controls |
 | `Stars` | [react-stars](https://github.com/n49/react-stars) |
 | `Textfit` | [react-textfit](https://github.com/malte-wessel/react-textfit) |
 | `Weather` | [react-open-weather](https://github.com/farahat80/react-open-weather) |
@@ -75,7 +76,7 @@ python -m examples.barcode_usage
 
 Install the JavaScript and Python development dependencies, then build the
 JavaScript bundle and generated Dash components. The project is tested with
-Python 3.12 and 3.15, Node.js 22, and Dash's experimental React 19.2.4 runtime:
+Python 3.15, Node.js 22, and Dash's experimental React 19.2.4 runtime:
 
 ```bash
 YARN_NODE_LINKER=node-modules yarn

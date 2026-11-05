@@ -7,6 +7,7 @@ import pkgutil
 from dash import Dash, Input, Output, html
 from dash.testing.application_runners import import_app
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -29,12 +30,13 @@ def test_representative_components_render(dash_duo):
             dash_grocery.Barcode(id="barcode", value="123456"),
             dash_grocery.Clock(id="clock", format="HH:mm:ss", ticking=False),
             dash_grocery.PowerModeInput(id="power-mode", value=""),
+            dash_grocery.Snake(id="snake"),
         ]
     )
 
     dash_duo.start_server(app)
 
-    for component_id in ("qr-code", "barcode", "power-mode"):
+    for component_id in ("qr-code", "barcode", "power-mode", "snake-board"):
         dash_duo.wait_for_element(f"#{component_id}")
 
     WebDriverWait(dash_duo.driver, 10).until(
@@ -42,6 +44,29 @@ def test_representative_components_render(dash_duo):
             r"\d{2}:\d{2}:\d{2}", driver.find_element(By.TAG_NAME, "body").text
         )
     )
+
+    assert dash_duo.find_element("#snake-start").text == "Start"
+
+
+def test_snake_controls_and_styles_are_scoped(dash_duo):
+    app = Dash(__name__)
+    app.layout = html.Div(
+        [
+            dash_grocery.Snake(id="snake"),
+            html.Button("Unrelated button", id="unrelated-button"),
+        ]
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.find_element("#snake-start").click()
+    dash_duo.wait_for_element("#snake-pause")
+
+    unrelated_margin = dash_duo.driver.execute_script(
+        "return getComputedStyle(document.getElementById('unrelated-button')).marginTop"
+    )
+    assert unrelated_margin != "20px"
+
+    dash_duo.find_element("#snake-board").send_keys(Keys.ARROW_DOWN)
 
 
 def test_custom_weather_provider_renders(dash_duo):

@@ -12,17 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       YARN_NODE_LINKER: node-modules
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.12', '3.15']
-
     steps:
     - uses: actions/checkout@v4
 
     - uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.15'
         architecture: 'x64'
         cache: 'pip'
 
@@ -47,12 +42,12 @@ jobs:
         mkdir -p junit
         yarn lint
         yarn build
-        pytest --webdriver=Firefox --cov=dash_grocery --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+        pytest --webdriver=Firefox --cov=dash_grocery --junitxml=junit/test-results-3.15.xml --cov-report=xml tests
 
     - name: Upload Results
       uses: actions/upload-artifact@v4.3.3
       with:
-        path: junit/test-results-${{ matrix.python-version }}.xml
+        path: junit/test-results-3.15.xml
       if: ${{ always() }}
 
     - name: Upload to Codecov

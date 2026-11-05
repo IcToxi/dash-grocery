@@ -12,6 +12,7 @@ COMPONENTS = [
     ("PowerModeInput", {"value": "hello"}),
     ("QRCodeCanvas", {"value": "https://example.com"}),
     ("QRCodeSVG", {"value": "https://example.com"}),
+    ("Snake", {"color1": "#000", "color2": "#f00"}),
     ("Stars", {"value": 3}),
     ("Textfit", {"mode": "single", "max": 400}),
     ("Weather", {"api_key": "test-key", "locationLabel": "Test"}),

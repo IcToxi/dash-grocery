@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to publish, e.g. v0.1.2"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -18,6 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tag || github.ref }}
           persist-credentials: false
 
       - uses: actions/setup-python@v5
@@ -38,9 +45,11 @@ jobs:
           yarn install --immutable
 
       - name: Verify release tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           expected_tag="v$(python -c 'import json; print(json.load(open("package.json"))["version"])')"
-          test "$GITHUB_REF_NAME" = "$expected_tag"
+          test "$RELEASE_TAG" = "$expected_tag"
 
       - name: Build Dash components
         env:

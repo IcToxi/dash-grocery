@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const packagejson = require('./package.json')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import')
@@ -71,9 +72,6 @@ module.exports = (env, argv) => {
                     use: [
                         {
                             loader: 'style-loader',
-                            options: {
-                                insertAt: 'top',
-                            },
                         },
                         {
                             loader: 'css-loader',
@@ -83,7 +81,7 @@ module.exports = (env, argv) => {
             ],
         },
         resolve: {
-            extensions: ['*', '.js', '.jsx'],
+            extensions: ['.js', '.jsx'],
         },
         optimization: {
             splitChunks: {
@@ -108,6 +106,9 @@ module.exports = (env, argv) => {
         plugins: [
             new WebpackDashDynamicImport(),
             new NodePolyfillPlugin(),
+            // tsParticles lazy-loads plugins; keep everything in one bundle so
+            // no unlisted async chunks are needed at runtime.
+            new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
         ],
     }
 }

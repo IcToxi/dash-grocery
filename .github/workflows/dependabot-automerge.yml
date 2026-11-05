@@ -1,0 +1,38 @@
+name: Dependabot auto-merge
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    name: Merge passing Dependabot updates
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      startsWith(github.event.workflow_run.head_branch, 'dependabot/')
+    steps:
+      - name: Merge minor and patch updates
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          REPO: ${{ github.repository }}
+        run: |
+          pr=$(gh pr list --repo "$REPO" --head "$BRANCH" --state open --json number,title -q '.[0]')
+          number=$(echo "$pr" | jq -r '.number // empty')
+          [ -n "$number" ] || exit 0
+          title=$(echo "$pr" | jq -r '.title')
+          # Dependabot titles read "bump X from A to B"; leave major bumps for a human.
+          from=$(echo "$title" | sed -nE 's/.* from ([0-9]+)[^ ]* to ([0-9]+).*/\1/p')
+          to=$(echo "$title" | sed -nE 's/.* from ([0-9]+)[^ ]* to ([0-9]+).*/\2/p')
+          if [ -n "$from" ] && [ "$from" != "$to" ]; then
+            echo "Major update, skipping: $title"
+            exit 0
+          fi
+          gh pr merge "$number" --repo "$REPO" --squash --delete-branch

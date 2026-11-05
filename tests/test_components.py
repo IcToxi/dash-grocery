@@ -69,6 +69,30 @@ def test_snake_controls_and_styles_are_scoped(dash_duo):
     dash_duo.find_element("#snake-board").send_keys(Keys.ARROW_DOWN)
 
 
+def test_grid_layout_renders_dash_children(dash_duo):
+    app = Dash(__name__)
+    app.layout = dash_grocery.GridLayout(
+        id="grid",
+        layout=[
+            {"i": "a", "x": 0, "y": 0, "w": 4, "h": 2},
+            {"i": "b", "x": 4, "y": 0, "w": 4, "h": 2},
+        ],
+        children=[html.Div("Item A", id="a"), html.Div("Item B", id="b")],
+    )
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("#grid .react-grid-item #a")
+    assert len(dash_duo.find_elements("#grid .react-grid-item")) == 2
+
+
+def test_tsparticles_draws_canvas(dash_duo):
+    app = Dash(__name__)
+    app.layout = dash_grocery.Particles(id="particles", style={"height": "200px"})
+
+    dash_duo.start_server(app)
+    dash_duo.wait_for_element("#particles canvas")
+
+
 def test_stars_click_updates_dash_value(dash_duo):
     app = Dash(__name__)
     app.layout = html.Div(

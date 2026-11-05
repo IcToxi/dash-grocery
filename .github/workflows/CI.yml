@@ -5,6 +5,14 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Weekly run to catch upstream breakage (Dash, React, browsers) early.
+    - cron: '23 5 * * 1'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:

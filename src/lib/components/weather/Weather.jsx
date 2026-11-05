@@ -7,7 +7,10 @@ import ReactWeather, {
 import PropTypes from 'prop-types'
 import {omit, pick} from 'ramda'
 
-const WeatherDisplay = ({props, weather}) => (
+const WeatherDisplay = ({props, weather}) => {
+    // eslint-disable-next-line react/prop-types
+    const {class_name: className} = props
+    return (
     <ReactWeather
         {...omit(
             [
@@ -22,12 +25,13 @@ const WeatherDisplay = ({props, weather}) => (
             ],
             props
         )}
-        className={props.class_name}
+        className={className}
         data={weather.data}
         isLoading={weather.isLoading}
         errorMessage={weather.errorMessage}
     />
-)
+    )
+}
 
 WeatherDisplay.propTypes = {
     props: PropTypes.shape({

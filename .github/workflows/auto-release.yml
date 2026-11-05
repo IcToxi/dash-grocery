@@ -1,0 +1,57 @@
+name: Auto release
+
+on:
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  release:
+    name: Publish a patch release when main has new changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decide whether to release
+        id: decide
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          last=$(git describe --tags --abbrev=0 --match 'v*')
+          changed=$(git diff --name-only "$last" HEAD -- package.json yarn.lock requirements.txt src setup.py pyproject.toml | wc -l)
+          head=$(git rev-parse HEAD)
+          ci=$(gh run list --workflow CI.yml --commit "$head" --json conclusion -q '[.[] | select(.conclusion=="success")] | length')
+          echo "last=$last changed=$changed ci_success=$ci"
+          if [ "$changed" -gt 0 ] && [ "$ci" -gt 0 ]; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+            echo "last=$last" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bump patch version, tag and publish
+        if: steps.decide.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, re
+          text = open("package.json").read()
+          major, minor, patch = map(int, json.loads(text)["version"].split("."))
+          new = f"{major}.{minor}.{patch + 1}"
+          text = re.sub(r'("version": ")[^"]+(")', rf"\g<1>{new}\2", text, count=1)
+          open("package.json", "w").write(text)
+          print(new)
+          PY
+          version=$(python3 -c 'import json; print(json.load(open("package.json"))["version"])')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Release v$version"
+          git tag "v$version"
+          git push origin HEAD:main "v$version"
+          gh release create "v$version" --title "v$version" --generate-notes --verify-tag
+          gh workflow run publish-to-pypi.yml --ref main -f tag="v$version"

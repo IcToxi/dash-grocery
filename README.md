@@ -40,9 +40,11 @@ if __name__ == "__main__":
 | --- | --- |
 | `Barcode` | [react-barcode](https://github.com/kciter/react-barcode) |
 | `Clock` | [react-live-clock](https://github.com/pvoznyuk/react-live-clock) |
+| `GridLayout` | [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) |
 | `LazyLoad` | [react-lazyload](https://github.com/twobin/react-lazyload) |
 | `Masonry` | [react-masonry-component](https://github.com/eiriklv/react-masonry-component) |
 | `MouseParticles` | [react-mouse-particles](https://github.com/lindelof/react-mouse-particles) |
+| `Particles` | [tsParticles](https://github.com/tsparticles/tsparticles) (slim bundle) |
 | `ParticlesBg` | [particles-bg](https://github.com/lindelof/particles) |
 | `PowerModeInput` | [power-mode-input](https://github.com/lindelof/power-mode-input) |
 | `QRCodeCanvas`, `QRCodeSVG` | [qrcode.react](https://github.com/zpao/qrcode.react) |
@@ -106,6 +108,26 @@ publisher under **PyPI account settings → Publishing** with:
 - Workflow: `publish-to-pypi.yml`
 - Environment: `pypi`
 
-For each release, update the version in `package.json`, then push a matching
-tag such as `v0.0.8`. The publishing workflow builds and tests the package
-before uploading it to PyPI.
+A release is published when a tag such as `v0.1.2` matching the version in
+`package.json` is pushed. The publishing workflow builds and tests the package
+before uploading it to PyPI. It can also be started manually
+(`workflow_dispatch`) for an existing tag.
+
+### Automation
+
+The repository maintains itself:
+
+- **CI** runs on every push and pull request, and weekly to catch upstream
+  breakage (Dash, React, browsers).
+- **Dependabot** opens weekly grouped updates; passing minor/patch updates are
+  merged automatically (`dependabot-automerge.yml`). Major updates are left for
+  review.
+- **Auto release** (`auto-release.yml`) runs weekly. If `main` has dependency or
+  source changes since the last tag and CI passed, it bumps the patch version,
+  tags, creates the GitHub release and publishes to PyPI.
+
+## Not included
+
+[React Bits](https://reactbits.dev) and [Hover.dev](https://www.hover.dev) are
+not bundled: they are copy-paste source collections whose licenses restrict
+redistribution of components inside another package.

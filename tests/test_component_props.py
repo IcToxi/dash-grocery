@@ -14,6 +14,8 @@ COMPONENTS = [
     ("QRCodeSVG", {"value": "https://example.com"}),
     ("Snake", {"color1": "#000", "color2": "#f00"}),
     ("Stars", {"value": 3}),
+    ("GridLayout", {"layout": [{"i": "a", "x": 0, "y": 0, "w": 2, "h": 2}]}),
+    ("Particles", {"options": {"fpsLimit": 30}}),
     ("Textfit", {"mode": "single", "max": 400}),
     ("Weather", {"api_key": "test-key", "locationLabel": "Test"}),
     ("Weather", {"option": "custom", "customData": {"current": {}}}),

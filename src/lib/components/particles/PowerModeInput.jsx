@@ -1,135 +1,168 @@
-import React, {Component, createRef} from 'react'
+import React, {useEffect, useRef} from 'react'
 import PropTypes, {oneOfType} from 'prop-types'
-import PowerModeInput from 'power-mode-input'
-import {omit} from 'ramda'
+import {Burst, runLoop} from '../../utils/particleEngine'
+
+const DEFAULT_CONFIG = {
+    height: 5,
+    tha: [0, 360],
+    g: 0.5,
+    num: 5,
+    radius: 6,
+    circle: true,
+    alpha: [0.75, 0.1],
+    color: 'random',
+}
+
+/** Approximate the caret's viewport position inside a text input. */
+const caretPosition = input => {
+    const rect = input.getBoundingClientRect()
+    const style = getComputedStyle(input)
+    const ctx = document.createElement('canvas').getContext('2d')
+    ctx.font = style.font || `${style.fontSize} ${style.fontFamily}`
+    const caret = input.selectionStart === null ? input.value.length : input.selectionStart
+    const text = input.type === 'password' ? '•'.repeat(caret) : input.value.slice(0, caret)
+    const x =
+        rect.left +
+        parseFloat(style.paddingLeft || 0) +
+        parseFloat(style.borderLeftWidth || 0) +
+        ctx.measureText(text).width -
+        input.scrollLeft
+    return {x: Math.min(x, rect.right), y: rect.top + rect.height / 2}
+}
 
 /**
- * Wrapped from [power-mode-input](https://github.com/lindelof/power-mode-input).
- *
+ * A text input that shoots particles from the caret as you type.
  */
-export default class DashPowerModeInput extends Component {
-    static defaultProps = {
-        type: 'text',
-        value: '',
-        maxLength: 128,
-        config: {
-            height: 5,
-            tha: [0, 360],
-            g: 0.5,
-            num: 5,
-            radius: 6,
-            circle: true,
-            alpha: [0.75, 0.1],
-            color: 'random',
-        },
-    }
+const DashPowerModeInput = ({
+    id,
+    class_name,
+    type = 'text',
+    placeholder,
+    value = '',
+    maxLength = 128,
+    style,
+    config = DEFAULT_CONFIG,
+    setProps,
+}) => {
+    const inputRef = useRef(null)
+    const canvasRef = useRef(null)
+    const configRef = useRef(config)
+    const burstRef = useRef(new Burst())
+    configRef.current = config
 
-    static propTypes = {
-        /**
-         * The ID used to identify this component in Dash callbacks.
-         */
-        id: PropTypes.string,
+    useEffect(() => {
+        const burst = burstRef.current
+        return runLoop(canvasRef.current, (ctx, dt, w, h) =>
+            burst.draw(ctx, dt, w, h)
+        )
+    }, [])
 
-        /**
-         * Often used with CSS to style elements with common properties
-         */
-        class_name: PropTypes.string,
-
-        /**
-         * Type of the input tag.
-         */
-        type: PropTypes.string,
-
-        /**
-         * Placeholder of the input tag.
-         */
-        placeholder: PropTypes.string,
-
-        /**
-         * Value of the input tag.
-         */
-        value: PropTypes.any,
-
-        /**
-         * Default value of the input tag.
-         */
-        defaultValue: PropTypes.any,
-
-        /**
-         * The length limit of the input.
-         */
-        maxLength: PropTypes.number,
-
-        /**
-         * Style of the input tag.
-         */
-        style: PropTypes.object,
-
-        /**
-         * You can use type="custom" to achieve a higher degree of freedom for the particle background.
-         */
-        config: PropTypes.shape({
-            height: PropTypes.number,
-            num: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            radius: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            tha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            alpha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-            color: oneOfType([
-                PropTypes.string,
-                PropTypes.arrayOf(PropTypes.string),
-            ]),
-            g: PropTypes.number,
-            circle: PropTypes.bool,
-        }),
-
-        /**
-         * Dash-assigned callback that should be called to report property changes
-         * to Dash, to make them available for callbacks.
-         */
-        setProps: PropTypes.func,
-    }
-
-    inputRef = createRef()
-    powerModeInputInitialized = false
-
-    componentDidMount() {
-        PowerModeInput.make(this.inputRef.current, this.props.config)
-        this.powerModeInputInitialized = true
-    }
-
-    componentDidUpdate(previousProps) {
-        if (previousProps.config !== this.props.config) {
-            if (this.powerModeInputInitialized) {
-                PowerModeInput.close(this.inputRef.current)
-                this.powerModeInputInitialized = false
-            }
-            PowerModeInput.make(this.inputRef.current, this.props.config)
-            this.powerModeInputInitialized = true
+    const spawn = () => {
+        const input = inputRef.current
+        if (!input) {
+            return
         }
+        const {x, y} = caretPosition(input)
+        const cfg = {...DEFAULT_CONFIG, ...configRef.current}
+        burstRef.current.emit(x, y - cfg.height, {
+            ...cfg,
+            speedScale: 120,
+            life: [0.4, 0.9],
+        })
     }
 
-    componentWillUnmount() {
-        if (this.powerModeInputInitialized) {
-            PowerModeInput.close(this.inputRef.current)
-            this.powerModeInputInitialized = false
-        }
-    }
-
-    render() {
-        const {class_name, value, setProps} = this.props
-
-        return (
+    return (
+        <>
+            <canvas
+                ref={canvasRef}
+                style={{
+                    position: 'fixed',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none',
+                    zIndex: 9999,
+                }}
+            />
             <input
-                {...omit(['class_name', 'value', 'config'], this.props)}
+                id={id}
+                ref={inputRef}
                 className={class_name}
-                ref={this.inputRef}
-                value={value}
+                type={type}
+                placeholder={placeholder}
+                maxLength={maxLength}
+                style={style}
+                value={value === null ? '' : value}
                 onChange={event => {
                     if (setProps) {
                         setProps({value: event.target.value})
                     }
+                    requestAnimationFrame(spawn)
                 }}
             />
-        )
-    }
+        </>
+    )
 }
+
+DashPowerModeInput.propTypes = {
+    /**
+     * The ID used to identify this component in Dash callbacks.
+     */
+    id: PropTypes.string,
+
+    /**
+     * Often used with CSS to style elements with common properties
+     */
+    class_name: PropTypes.string,
+
+    /**
+     * Type of the input tag.
+     */
+    type: PropTypes.string,
+
+    /**
+     * Placeholder of the input tag.
+     */
+    placeholder: PropTypes.string,
+
+    /**
+     * Value of the input tag.
+     */
+    value: PropTypes.any,
+
+    /**
+     * The length limit of the input.
+     */
+    maxLength: PropTypes.number,
+
+    /**
+     * Style of the input tag.
+     */
+    style: PropTypes.object,
+
+    /**
+     * Particle options: height (px above the caret), num, radius, tha
+     * (angle range), alpha, color, g (gravity) and circle (round or square).
+     */
+    config: PropTypes.shape({
+        height: PropTypes.number,
+        num: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+        radius: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+        tha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+        alpha: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+        color: oneOfType([
+            PropTypes.string,
+            PropTypes.arrayOf(PropTypes.string),
+        ]),
+        g: PropTypes.number,
+        circle: PropTypes.bool,
+    }),
+
+    /**
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
+     */
+    setProps: PropTypes.func,
+}
+
+export default DashPowerModeInput

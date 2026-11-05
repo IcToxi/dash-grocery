@@ -178,9 +178,7 @@ def test_lazy_load_defers_offscreen_content(dash_duo):
     dash_duo.start_server(app)
     dash_duo.wait_for_element("#lazy")
     assert not dash_duo.find_elements("#lazy-child")
-    dash_duo.driver.execute_script(
-        "document.getElementById('lazy').scrollIntoView()"
-    )
+    dash_duo.driver.execute_script("document.getElementById('lazy').scrollIntoView()")
     dash_duo.wait_for_element("#lazy-child")
 
 
